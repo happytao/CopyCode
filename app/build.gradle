@@ -1,0 +1,111 @@
+plugins {
+    id 'com.android.application'
+//    id 'com.jakewharton.butterknife'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.xt.garbage"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true }
+            javaCompileOptions {
+                annotationProcessorOptions {
+                    arguments = [moduleName :project.getName() ]
+                    includeCompileClasspath = true
+                } }
+
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+allprojects {
+    repositories {
+        maven { url "https://oss.jfrog.org/libs-snapshot" }
+        maven { url "https://jitpack.io" }
+        jcenter()
+        mavenCentral()
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //路由
+    implementation'com.alibaba:arouter-api:1.3.1'
+    annotationProcessor'com.alibaba:arouter-compiler:1.1.4'
+
+    //EventBus
+    implementation 'org.greenrobot:eventbus:3.2.0'
+
+    // 基础依赖包，必须要依赖，状态栏
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+
+    //butterknife不是必须
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+
+    //导入Gson 库
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    //导入RXJava
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    //导入retrofit及adapter,convert
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+
+    //MultiDex
+    implementation 'com.android.support:multidex:1.0.3'
+
+    //okHttp登陆拦截器
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+
+    //开源日志库
+    implementation 'com.orhanobut:logger:1.15'
+    //tabLayout
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    //BaseQuickAdapter
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation 'jp.wasabeef:glide-transformations:4.3.0'
+    //dialog
+    implementation 'com.afollestad.material-dialogs:core:3.3.0'
+    //扫一扫
+    implementation 'com.github.bingoogolapple.BGAQRCode-Android:zxing:1.3.8'
+    //权限
+    implementation "org.permissionsdispatcher:permissionsdispatcher:4.8.0"
+    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:4.8.0"
+    //相册选取调用
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.6.0'
+    //swipeRecyclerView
+    implementation 'com.yanzhenjie.recyclerview:x:1.3.2'
+
+}

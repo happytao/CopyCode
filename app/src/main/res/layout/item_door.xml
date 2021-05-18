@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="12dp"
+    android:paddingTop="16dp"
+    android:background="@drawable/bg_card_radius"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/name"
+        android:textStyle="bold"
+        android:textColor="@color/color_CC000000"
+        android:textSize="16sp"
+        android:text="纸"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/type"
+        android:textStyle="bold"
+        android:textColor="@color/color_CC000000"
+        android:textSize="12sp"
+        android:text="全部"
+        app:layout_constraintBaseline_toBaselineOf="@id/name"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="1"
+        android:gravity="left"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/money"
+        android:id="@+id/sys_money"
+        android:layout_marginTop="18dp"
+        android:text="建议零售价：1元/kg"
+        android:textSize="14sp"
+        android:textColor="@color/color_99000000"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintLeft_toRightOf="@id/sys_money"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="现场议价:1元/kg"
+        android:id="@+id/money"
+        app:layout_constraintBaseline_toBaselineOf="@id/sys_money"
+        android:textSize="14sp"
+        android:textColor="@color/color_99000000"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/sys_kg"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintTop_toBottomOf="@id/sys_money"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/kg"
+        android:layout_marginTop="18dp"
+        android:text="称重后重量：125kg"
+        android:textSize="14sp"
+        android:textColor="@color/color_99000000"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="1"
+        android:id="@+id/kg"
+        app:layout_constraintTop_toBottomOf="@id/sys_money"
+        app:layout_constraintLeft_toRightOf="@id/sys_kg"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@id/sys_kg"
+        android:text="现场议价:1元/kg"
+        android:textSize="14sp"
+        android:textColor="@color/color_99000000"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_1A000000"
+        app:layout_constraintTop_toBottomOf="@id/kg"
+        android:layout_marginTop="16dp"
+        android:id="@+id/line"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/line"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/tol_money"
+        android:textColor="@color/color_CC000000"
+        android:textSize="18sp"
+        android:text="总价："/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

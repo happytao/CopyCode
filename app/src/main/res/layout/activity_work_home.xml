@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WorkHomeActivity"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/fl_content"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rg_main"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <RadioButton
+            android:id="@+id/rb_common_frame"
+            style="@style/bottom_tag_style"
+            android:drawableTop="@drawable/rb_common_frame_drawable_selector"
+            android:text="首页"/>
+
+        <RadioButton
+            style="@style/bottom_tag_style"
+            android:id="@+id/rb_third_party"
+            android:drawableTop="@drawable/rb_work_two"
+            android:text="消息"/>
+
+        <RadioButton
+            style="@style/bottom_tag_style"
+            android:id="@+id/rb_user"
+            android:drawableTop="@drawable/rb_user_drawable_selector"
+            android:text="我的"/>
+
+    </RadioGroup>
+
+</LinearLayout>

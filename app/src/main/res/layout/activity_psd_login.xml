@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.login.PsdLoginActivity"
+    android:orientation="vertical"
+    android:background="@color/color_F8F8F8">
+
+    <com.xt.garbage.wigdt.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:leftBackground="@drawable/left_icon"
+        app:titleTextColor="@color/color_000000"
+        app:rightTextColor="@color/color_000000"
+        app:rightText="验证码登录"
+        app:title="注册/登录"
+        android:background="@color/color_F8F8F8"
+        android:id="@+id/tb_toolbar"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:background="@color/color_F8F8F8"
+        android:hint="请输入您的手机号"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/et_phone"
+        android:textSize="14sp"
+        android:textColorHint="@color/color_33000000"
+        android:textColor="@color/color_000000"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="17dp"
+        android:background="@color/color_1A000000"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:background="@color/color_F8F8F8"
+        android:hint="请输入密码"
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/et_psd"
+        android:textSize="14sp"
+        android:textColorHint="@color/color_33000000"
+        android:textColor="@color/color_000000"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="17dp"
+        android:background="@color/color_1A000000"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:id="@+id/btn_logon"
+        android:background="@drawable/bg_button_login_false"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="18sp"/>
+
+
+
+
+
+
+
+
+</LinearLayout>

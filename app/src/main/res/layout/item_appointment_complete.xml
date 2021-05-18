@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="21dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:textColor="@color/color_99000000"
+        android:text="名称"
+        android:id="@+id/name"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="12dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:textColor="@color/color_99000000"
+        android:text="公示价格"
+        android:id="@+id/g_pay"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="12dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:textColor="@color/color_99000000"
+        android:text="(积分)"
+        android:id="@+id/number"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="12dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:textColor="@color/color_99000000"
+        android:text="KG/次"
+        android:id="@+id/kg"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="12dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:textColor="@color/color_99000000"
+        android:text="(积分)"
+        android:id="@+id/total_price"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="12dp"/>
+
+</LinearLayout>

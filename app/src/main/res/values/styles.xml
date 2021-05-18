@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name = "AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+<!--        标题栏颜色-->
+        <item name = "colorPrimary">@color/colorPrimary</item>
+<!--        状态栏颜色-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+<!--        控制各个控件被选中时的颜色-->
+        <item name="colorAccent">@color/colorAccent</item>
+<!--        recycleView分割线颜色-->
+        <item name="android:listDivider">@color/color_1A000000</item>
+    </style>
+
+    <style name = "bottom_tag_style">
+        <item name = "android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@android:color/transparent</item>
+        <item name="android:drawablePadding">3dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@drawable/bottom_textcolor_drawable_selector</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="BottomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialog_bottom_up</item>
+        <item name="android:windowExitAnimation">@anim/dialog_bottom_down</item>
+    </style>
+
+    <declare-styleable name="kylin_search_style">
+<!--        图片地址-->
+        <attr name="img_src" format="reference"/>
+<!--        图片大小-->
+        <attr name="img_size" format="dimension"/>
+<!--        图片显示/隐藏-->
+        <attr name="img_visibility" format="boolean"/>
+        <attr name="show_location" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="right" value="2"/>
+            <enum name="centre" value="1"/>
+        </attr>
+<!--        提示文字-->
+        <attr name="edt_hint" format="string"/>
+<!--        提示文字大小-->
+        <attr name="edt_size" format="dimension"/>
+<!--        提示文字颜色-->
+        <attr name="edt_hint_color" format="color"/>
+<!--        搜索框背景-->
+        <attr name="search_backgroup" format="reference"/>
+<!--        搜索框背景-->
+        <attr name="search_padding" format="reference"/>
+    </declare-styleable>
+
+    <style name="CustomCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style</item>
+    </style>
+
+    <style name="btn_confirm_style" parent="@android:style/Widget.Button">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/btn_orderdetails</item>
+        <item name="android:clickable">false</item>
+    </style>
+
+    <style name="CustomEditTextTheme">
+        <item name="android:digits">0123456789</item>
+        <item name="android:textColorHint">@color/color_33000000</item>
+        <item name="android:textColor">@color/color_CC000000</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="text_cc000000_14sp" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/color_CC000000</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+
+</resources>

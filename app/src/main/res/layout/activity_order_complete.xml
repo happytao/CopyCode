@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.work.appointment.OrderCompleteActivity"
+    android:orientation="vertical"
+    android:background="@color/color_F4F4F4">
+    
+    <com.xt.garbage.wigdt.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:leftBackground="@drawable/left_icon"
+        app:titleTextColor="@color/color_000000"
+        app:title="预约单"
+        android:background="@color/white"
+        android:id="@+id/toolbar"/>
+    
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/site_layout">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="138dp"
+                    android:background="#32394D"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/site_type_success_icon"
+                        android:id="@+id/order_image"
+                        android:layout_gravity="center_vertical"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/order_type"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"
+                        android:text="已完成"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_card_radius"
+                    android:layout_marginTop="60dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/color_CC000000"
+                        android:text="订单详情"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/user_name"
+                        android:text="联系人：李先生"
+                        android:textColor="@color/color_99000000"
+                        android:textSize="14sp"
+                        android:layout_marginTop="17dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/phone"
+                        android:text="联系人：李先生"
+                        android:textColor="@color/color_99000000"
+                        android:textSize="14sp"
+                        android:layout_marginTop="17dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pay_status"
+                        android:text="联系人：李先生"
+                        android:textColor="@color/color_99000000"
+                        android:textSize="14sp"
+                        android:layout_marginTop="17dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/site"
+                        android:text="联系人：李先生"
+                        android:textColor="@color/color_99000000"
+                        android:textSize="14sp"
+                        android:layout_marginTop="17dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/create_time"
+                        android:text="联系人：李先生"
+                        android:textColor="@color/color_99000000"
+                        android:textSize="14sp"
+                        android:layout_marginTop="17dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/complete_time"
+                        android:text="联系人：李先生"
+                        android:textColor="@color/color_99000000"
+                        android:textSize="14sp"
+                        android:layout_marginTop="17dp"/>
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_radius"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingTop="18dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="9dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="回收物详情"
+                    android:textColor="@color/color_CC000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:id="@+id/recyclerview"
+                    android:background="@drawable/bg_card_gray"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.workmain.ProvideHomeDeliveryServiceFragment"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/login_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_radiogroup_work"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="12dp">
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/admin"
+            android:textStyle="bold"
+            android:text="待处理"
+            android:button="@null"
+            android:background="@drawable/bg_work_radiobutton_true"
+            android:gravity="center"
+            android:textColor="@drawable/bg_work_radiobuttontext"
+            android:checked="true"
+            />
+
+        <RadioButton
+            android:id="@+id/market"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="已完成"
+            android:layout_weight="1"
+            android:button="@null"
+            android:background="@drawable/bg_work_radiobutton_true"
+            android:gravity="center"
+            android:textColor="@drawable/bg_work_radiobuttontext"/>
+
+        <RadioButton
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="已取消"
+            android:button="@null"
+            android:gravity="center"
+            android:background="@drawable/bg_work_radiobutton_true"
+            android:textColor="@drawable/bg_work_radiobuttontext"/>
+
+    </RadioGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/list"
+        tools:listitem="@layout/item_providehome"
+        android:layout_marginTop="12dp"/>
+
+
+
+
+</LinearLayout>
