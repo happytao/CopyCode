@@ -23,6 +23,10 @@ public class RoutePathConstant {
     public final static String WORK_CLEAN_WAITER = "/app/work/clean_waiter";
     public final static String WORK_SCAN_CODE = "/app/work/scan_code";
     public final static String WORK_SUBSCRIBE_DRIVER = "/app/work/subscribe_driver";
+    public final static String SUBSCRIBE_ORDER = "/app/site/order_subscribe_order";
+    public final static String SUBSCRIBE_ORDER_RECEIVE = "/app/site/order_subscribe_order_receive";
+    public final static String SUBSCRIBE_ORDER_COMPLETE = "/app/site/order_subscribe_order_complete";
+    public final static String SUBSCRIBE_ORDER_CANCEL = "/app/site/order_subscribe_order_cancel";
 
 
 

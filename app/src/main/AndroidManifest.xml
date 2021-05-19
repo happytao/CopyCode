@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.work.clean.CleanWaitOrderActivity"></activity>
+        <activity android:name=".ui.activity.message.MessageListActivity"></activity>
+        <activity android:name=".ui.activity.work.clean.CleanWaitOrderActivity" />
         <activity android:name=".ui.activity.work.clean.DoorOrderActivity" />
         <activity android:name=".ui.activity.work.clean.SubscribeDriverActivity" />
         <activity android:name=".ui.activity.work.ScanQRCodeActivity" />
@@ -30,7 +31,6 @@
         <activity android:name=".ui.activity.work.appointment.OrderCompleteActivity" />
         <activity android:name=".ui.activity.work.appointment.WaitOrderActivity" />
         <activity android:name=".ui.activity.work.appointment.OrderPackUpActivity" />
-        <activity android:name=".ui.activity.message.MessageListActivity" />
         <activity android:name=".ui.activity.work.shsm.ShsmOrderCancelDetailsActivity" />
         <activity android:name=".ui.activity.work.shsm.ShsmCompletedActivity" />
         <activity android:name=".ui.activity.work.shsm.ShsmOrderDetailsActivity" />

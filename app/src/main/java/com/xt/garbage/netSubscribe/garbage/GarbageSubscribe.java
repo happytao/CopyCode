@@ -32,4 +32,18 @@ public class GarbageSubscribe {
         RetrofitFactory.getInstance().toSubscribe(observable,subscriber);
     }
 
+    public static void orderSiteDetails(Long orderId,DisposableObserver<ResponseBody> subscribe) {
+        Map<String,Long> map = new HashMap<>();
+        map.put("orderId",orderId);
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().orderSiteDetails(map);
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
+    }
+
+    public static void orderDetails(Long orderId,DisposableObserver<ResponseBody> subscribe) {
+        Map<String,Long> map = new HashMap<>();
+        map.put("orderId",orderId);
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().orderDetails(map);
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
+    }
+
 }

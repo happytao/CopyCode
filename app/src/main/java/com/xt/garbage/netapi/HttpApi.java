@@ -59,4 +59,16 @@ public interface HttpApi {
     @POST("auth/clean/site/order/confirm/order")
     Observable<ResponseBody> cleanOrderConfirm(@Body RequestBody requestBody);
 
+    //设置消息已读
+    @POST("auth/user/message/set/read")
+    Observable<ResponseBody> setMessage(@Body Map<String,Long> map);
+
+    //驿站预约上门订单详情
+    @POST("auth/garbage/site/order/detail")
+    Observable<ResponseBody> orderSiteDetails(@Body Map<String,Long> map);
+
+    //预约上门订单详情
+    @POST("auth/garbage/user/order/detail")
+    Observable<ResponseBody> orderDetails(@Body Map<String,Long> map);
+
 }
