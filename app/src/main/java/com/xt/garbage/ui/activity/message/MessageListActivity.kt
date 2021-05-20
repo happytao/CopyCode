@@ -12,6 +12,7 @@ import com.xt.garbage.base.BaseActivity
 import com.xt.garbage.bean.garbage.OrderSubscribeDetailsBean
 import com.xt.garbage.bean.login.LoginBean
 import com.xt.garbage.bean.message.MessageListBean
+import com.xt.garbage.bean.workmain.CleanOrderDetailsBean
 import com.xt.garbage.bean.workmain.OrderSiteDetailsBean
 import com.xt.garbage.constant.RoutePathConstant
 import com.xt.garbage.netSubscribe.garbage.DriverSubscribe
@@ -61,23 +62,56 @@ class MessageListActivity : BaseActivity() {
         }
     }
 
-    private fun goClean() {
+    private fun goClean(msgBussId: Long) {
         var loginBean:LoginBean = login
         if(loginBean.result.userInfoRespDTO.userType == 4) {
-            getSiteCleanOrderInfo()
+            getSiteCleanOrderInfo(msgBussId)
+        }
+        else {
+            getCleanOrderInfo()
         }
     }
 
-    private fun getSiteCleanOrderInfo(msgBussId: Long) {
-        DriverSubscribe.getOrderDetails(msgBussId,OnSuccessAndFaultSub(object : OnSuccessAndFaultListener{
+    private fun getCleanOrderInfo(msgBussId: Long) {
+        DriverSubscribe.getMotorOrderDetails(msgBussId,OnSuccessAndFaultSub(object : OnSuccessAndFaultListener{
             override fun onSuccess(result: String?) {
-
+                var orderDetailsBean:OrderDe
             }
 
             override fun onFailed(errorMsg: String?) {
                 TODO("Not yet implemented")
             }
         }))
+
+    }
+
+    private fun getSiteCleanOrderInfo(msgBussId: Long) {
+        DriverSubscribe.getOrderDetails(msgBussId,OnSuccessAndFaultSub(object : OnSuccessAndFaultListener{
+            override fun onSuccess(result: String?) {
+                var cleanOrderDetailsBean:CleanOrderDetailsBean = GsonUtils.fromJson(result,CleanOrderDetailsBean::class.java)
+                if(cleanOrderDetailsBean.errorCode == 0) {
+                    if(cleanOrderDetailsBean.result.orderStatus == 3 || cleanOrderDetailsBean.result.orderStatus == 4) {
+                        ARouter.getInstance().build(RoutePathConstant.WORK_CLEAN_DOOR)
+                                .withLong(RoutePathConstant.ORDER_ID,cleanOrderDetailsBean.result.id)
+                                .withInt(RoutePathConstant.ORDER_STATUS,cleanOrderDetailsBean.result.orderStatus)
+                                .navigation()
+
+                    }
+                    else {
+                        ARouter.getInstance().build(RoutePathConstant.WORK_CLEAN_WAITER)
+                                .withLong(RoutePathConstant.ORDER_ID,cleanOrderDetailsBean.result.id)
+                                .withInt(RoutePathConstant.ORDER_STATUS,cleanOrderDetailsBean.result.orderStatus)
+                                .navigation()
+                    }
+
+                }
+
+            }
+
+            override fun onFailed(errorMsg: String?) {
+                showToast("请求失败: $errorMsg")
+            }
+        },this))
 
     }
 

@@ -57,4 +57,11 @@ public class DriverSubscribe {
         Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().cleanOrderConfirm(body);
         RetrofitFactory.getInstance().toSubscribe(observable,subscriber);
     }
+
+    public static void getMotorOrderDetails(Long orderId,DisposableObserver<ResponseBody> subscribe) {
+        Map<String,Long> map = new HashMap<>();
+        map.put("orderId",orderId);
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().getMotorOrderDetails(map);
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
+    }
 }

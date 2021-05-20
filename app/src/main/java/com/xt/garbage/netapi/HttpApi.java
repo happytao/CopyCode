@@ -71,4 +71,8 @@ public interface HttpApi {
     @POST("auth/garbage/user/order/detail")
     Observable<ResponseBody> orderDetails(@Body Map<String,Long> map);
 
+    //清运司机获取订单详情
+    @POST("auth/clean/motorman/order/detail")
+    Observable<ResponseBody> getMotorOrderDetails(@Body Map<String,Long> map);
+
 }
