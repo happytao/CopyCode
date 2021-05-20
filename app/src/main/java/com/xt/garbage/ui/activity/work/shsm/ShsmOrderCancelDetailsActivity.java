@@ -32,7 +32,7 @@ import butterknife.BindView;
 @Route(path = RoutePathConstant.SITE_SHSMORDERCANCELDETAILS)
 public class ShsmOrderCancelDetailsActivity extends BaseActivity {
     @Autowired(name = RoutePathConstant.ORDER_ID)
-    String id = "";
+    Long id = 0L;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.recyclerview)
@@ -93,7 +93,7 @@ public class ShsmOrderCancelDetailsActivity extends BaseActivity {
 
     }
 
-    private void batchDetails(String id) {
+    private void batchDetails(Long id) {
         ShopSubscribe.getParentOrderDetails(id,new OnSuccessAndFaultSub(new OnSuccessAndFaultListener() {
             @Override
             public void onSuccess(String result) {

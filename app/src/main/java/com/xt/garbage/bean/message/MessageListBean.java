@@ -69,10 +69,10 @@ public class MessageListBean {
          * unreadSysMessage : (int32)未读系统消息
          */
 
-        private List<CleanMessageListDTO> cleanMessageList;
-        private List<DeliveryMessageListDTO> deliveryMessageList;
-        private List<SubscribeMessageListDTO> subscribeMessageList;
-        private List<SysMessageListDTO> sysMessageList;
+        private List<BaseMessageListDTO> cleanMessageList;
+        private List<BaseMessageListDTO> deliveryMessageList;
+        private List<BaseMessageListDTO> subscribeMessageList;
+        private List<BaseMessageListDTO> sysMessageList;
         private int unreadCleanMessage;
         private int unreadDeliveryMessage;
         private int unreadSubscribeMessage;
@@ -81,35 +81,35 @@ public class MessageListBean {
         public ResultDTO() {
         }
 
-        public List<CleanMessageListDTO> getCleanMessageList() {
+        public List<BaseMessageListDTO> getCleanMessageList() {
             return cleanMessageList;
         }
 
-        public void setCleanMessageList(List<CleanMessageListDTO> cleanMessageList) {
+        public void setCleanMessageList(List<BaseMessageListDTO> cleanMessageList) {
             this.cleanMessageList = cleanMessageList;
         }
 
-        public List<DeliveryMessageListDTO> getDeliveryMessageList() {
+        public List<BaseMessageListDTO> getDeliveryMessageList() {
             return deliveryMessageList;
         }
 
-        public void setDeliveryMessageList(List<DeliveryMessageListDTO> deliveryMessageList) {
+        public void setDeliveryMessageList(List<BaseMessageListDTO> deliveryMessageList) {
             this.deliveryMessageList = deliveryMessageList;
         }
 
-        public List<SubscribeMessageListDTO> getSubscribeMessageList() {
+        public List<BaseMessageListDTO> getSubscribeMessageList() {
             return subscribeMessageList;
         }
 
-        public void setSubscribeMessageList(List<SubscribeMessageListDTO> subscribeMessageList) {
+        public void setSubscribeMessageList(List<BaseMessageListDTO> subscribeMessageList) {
             this.subscribeMessageList = subscribeMessageList;
         }
 
-        public List<SysMessageListDTO> getSysMessageList() {
+        public List<BaseMessageListDTO> getSysMessageList() {
             return sysMessageList;
         }
 
-        public void setSysMessageList(List<SysMessageListDTO> sysMessageList) {
+        public void setSysMessageList(List<BaseMessageListDTO> sysMessageList) {
             this.sysMessageList = sysMessageList;
         }
 
@@ -145,7 +145,7 @@ public class MessageListBean {
             this.unreadSysMessage = unreadSysMessage;
         }
 
-        public static class CleanMessageListDTO {
+        public static class BaseMessageListDTO {
             /**
              * createTime : (date-time)创建时间
              * id : (int64)消息ID
@@ -164,7 +164,7 @@ public class MessageListBean {
             private String msgTitle;
             private int msgType;
 
-            public CleanMessageListDTO() {
+            public BaseMessageListDTO() {
             }
 
             public String getCreateTime() {
@@ -225,242 +225,5 @@ public class MessageListBean {
         }
 
 
-        public static class DeliveryMessageListDTO {
-            /**
-             * createTime : (date-time)创建时间
-             * id : (int64)消息ID
-             * isRead : (boolean)是否已读
-             * msgBussId : (int64)业务ID
-             * msgContent : (string)消息内容
-             * msgTitle : (string)消息标题
-             * msgType : (int32)消息类型：{0.系统消息 1.预约上门 2.垃圾清运 3.送货上门}
-             */
-
-            private String createTime;
-            private long id;
-            private boolean isRead;
-            private long msgBussId;
-            private String msgContent;
-            private String msgTitle;
-            private int msgType;
-
-            public DeliveryMessageListDTO() {
-            }
-
-            public String getCreateTime() {
-                return createTime;
-            }
-
-            public void setCreateTime(String createTime) {
-                this.createTime = createTime;
-            }
-
-            public long getId() {
-                return id;
-            }
-
-            public void setId(long id) {
-                this.id = id;
-            }
-
-            public boolean isRead() {
-                return isRead;
-            }
-
-            public void setRead(boolean read) {
-                isRead = read;
-            }
-
-            public long getMsgBussId() {
-                return msgBussId;
-            }
-
-            public void setMsgBussId(long msgBussId) {
-                this.msgBussId = msgBussId;
-            }
-
-            public String getMsgContent() {
-                return msgContent;
-            }
-
-            public void setMsgContent(String msgContent) {
-                this.msgContent = msgContent;
-            }
-
-            public String getMsgTitle() {
-                return msgTitle;
-            }
-
-            public void setMsgTitle(String msgTitle) {
-                this.msgTitle = msgTitle;
-            }
-
-            public int getMsgType() {
-                return msgType;
-            }
-
-            public void setMsgType(int msgType) {
-                this.msgType = msgType;
-            }
-        }
-
-
-        public static class SubscribeMessageListDTO {
-            /**
-             * createTime : (date-time)创建时间
-             * id : (int64)消息ID
-             * isRead : (boolean)是否已读
-             * msgBussId : (int64)业务ID
-             * msgContent : (string)消息内容
-             * msgTitle : (string)消息标题
-             * msgType : (int32)消息类型：{0.系统消息 1.预约上门 2.垃圾清运 3.送货上门}
-             */
-
-            private String createTime;
-            private long id;
-            private boolean isRead;
-            private long msgBussId;
-            private String msgContent;
-            private String msgTitle;
-            private int msgType;
-
-            public SubscribeMessageListDTO() {
-            }
-
-            public String getCreateTime() {
-                return createTime;
-            }
-
-            public void setCreateTime(String createTime) {
-                this.createTime = createTime;
-            }
-
-            public long getId() {
-                return id;
-            }
-
-            public void setId(long id) {
-                this.id = id;
-            }
-
-            public boolean isRead() {
-                return isRead;
-            }
-
-            public void setRead(boolean read) {
-                isRead = read;
-            }
-
-            public long getMsgBussId() {
-                return msgBussId;
-            }
-
-            public void setMsgBussId(long msgBussId) {
-                this.msgBussId = msgBussId;
-            }
-
-            public String getMsgContent() {
-                return msgContent;
-            }
-
-            public void setMsgContent(String msgContent) {
-                this.msgContent = msgContent;
-            }
-
-            public String getMsgTitle() {
-                return msgTitle;
-            }
-
-            public void setMsgTitle(String msgTitle) {
-                this.msgTitle = msgTitle;
-            }
-
-            public int getMsgType() {
-                return msgType;
-            }
-
-            public void setMsgType(int msgType) {
-                this.msgType = msgType;
-            }
-        }
-
-        public static class SysMessageListDTO {
-            /**
-             * createTime : (date-time)创建时间
-             * id : (int64)消息ID
-             * isRead : (boolean)是否已读
-             * msgBussId : (int64)业务ID
-             * msgContent : (string)消息内容
-             * msgTitle : (string)消息标题
-             * msgType : (int32)消息类型：{0.系统消息 1.预约上门 2.垃圾清运 3.送货上门}
-             */
-
-            private String createTime;
-            private long id;
-            private boolean isRead;
-            private long msgBussId;
-            private String msgContent;
-            private String msgTitle;
-            private int msgType;
-
-            public SysMessageListDTO() {
-            }
-
-            public String getCreateTime() {
-                return createTime;
-            }
-
-            public void setCreateTime(String createTime) {
-                this.createTime = createTime;
-            }
-
-            public long getId() {
-                return id;
-            }
-
-            public void setId(long id) {
-                this.id = id;
-            }
-
-            public boolean isRead() {
-                return isRead;
-            }
-
-            public void setRead(boolean read) {
-                isRead = read;
-            }
-
-            public long getMsgBussId() {
-                return msgBussId;
-            }
-
-            public void setMsgBussId(long msgBussId) {
-                this.msgBussId = msgBussId;
-            }
-
-            public String getMsgContent() {
-                return msgContent;
-            }
-
-            public void setMsgContent(String msgContent) {
-                this.msgContent = msgContent;
-            }
-
-            public String getMsgTitle() {
-                return msgTitle;
-            }
-
-            public void setMsgTitle(String msgTitle) {
-                this.msgTitle = msgTitle;
-            }
-
-            public int getMsgType() {
-                return msgType;
-            }
-
-            public void setMsgType(int msgType) {
-                this.msgType = msgType;
-            }
-        }
     }
 }

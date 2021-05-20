@@ -6,8 +6,6 @@ import java.util.List;
  * @author:DIY
  * @date: 2021/5/20
  */
-@lombok.NoArgsConstructor
-@lombok.Data
 public class OrderDetailsBean {
 
     /**
@@ -22,8 +20,38 @@ public class OrderDetailsBean {
     private ResultDTO result;
     private boolean success;
 
-    @lombok.NoArgsConstructor
-    @lombok.Data
+    public int getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public ResultDTO getResult() {
+        return result;
+    }
+
+    public void setResult(ResultDTO result) {
+        this.result = result;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
     public static class ResultDTO {
         /**
          * createTime : (date-time)创建时间
@@ -59,8 +87,126 @@ public class OrderDetailsBean {
         private SiteRespDTO siteResp;
         private double totalWeight;
 
-        @lombok.NoArgsConstructor
-        @lombok.Data
+        public String getCreateTime() {
+            return createTime;
+        }
+
+        public void setCreateTime(String createTime) {
+            this.createTime = createTime;
+        }
+
+        public long getId() {
+            return id;
+        }
+
+        public void setId(long id) {
+            this.id = id;
+        }
+
+        public long getMotormanRefUserId() {
+            return motormanRefUserId;
+        }
+
+        public void setMotormanRefUserId(long motormanRefUserId) {
+            this.motormanRefUserId = motormanRefUserId;
+        }
+
+        public String getOrderArriveTime() {
+            return orderArriveTime;
+        }
+
+        public void setOrderArriveTime(String orderArriveTime) {
+            this.orderArriveTime = orderArriveTime;
+        }
+
+        public String getOrderCancelExplain() {
+            return orderCancelExplain;
+        }
+
+        public void setOrderCancelExplain(String orderCancelExplain) {
+            this.orderCancelExplain = orderCancelExplain;
+        }
+
+        public int getOrderCancelReason() {
+            return orderCancelReason;
+        }
+
+        public void setOrderCancelReason(int orderCancelReason) {
+            this.orderCancelReason = orderCancelReason;
+        }
+
+        public String getOrderCancelTime() {
+            return orderCancelTime;
+        }
+
+        public void setOrderCancelTime(String orderCancelTime) {
+            this.orderCancelTime = orderCancelTime;
+        }
+
+        public String getOrderFinishTime() {
+            return orderFinishTime;
+        }
+
+        public void setOrderFinishTime(String orderFinishTime) {
+            this.orderFinishTime = orderFinishTime;
+        }
+
+        public String getOrderReceiveTime() {
+            return orderReceiveTime;
+        }
+
+        public void setOrderReceiveTime(String orderReceiveTime) {
+            this.orderReceiveTime = orderReceiveTime;
+        }
+
+        public int getOrderStatus() {
+            return orderStatus;
+        }
+
+        public void setOrderStatus(int orderStatus) {
+            this.orderStatus = orderStatus;
+        }
+
+        public List<RecycleListDTO> getRecycleList() {
+            return recycleList;
+        }
+
+        public void setRecycleList(List<RecycleListDTO> recycleList) {
+            this.recycleList = recycleList;
+        }
+
+        public long getRefSiteId() {
+            return refSiteId;
+        }
+
+        public void setRefSiteId(long refSiteId) {
+            this.refSiteId = refSiteId;
+        }
+
+        public double getSettleTotalCashPrice() {
+            return settleTotalCashPrice;
+        }
+
+        public void setSettleTotalCashPrice(double settleTotalCashPrice) {
+            this.settleTotalCashPrice = settleTotalCashPrice;
+        }
+
+        public SiteRespDTO getSiteResp() {
+            return siteResp;
+        }
+
+        public void setSiteResp(SiteRespDTO siteResp) {
+            this.siteResp = siteResp;
+        }
+
+        public double getTotalWeight() {
+            return totalWeight;
+        }
+
+        public void setTotalWeight(double totalWeight) {
+            this.totalWeight = totalWeight;
+        }
+
         public static class SiteRespDTO {
             /**
              * id : (int64)站点ID
@@ -79,10 +225,65 @@ public class OrderDetailsBean {
             private String siteName;
             private String siteResourceUrl;
             private int state;
+
+            public double getId() {
+                return id;
+            }
+
+            public void setId(double id) {
+                this.id = id;
+            }
+
+            public String getSiteContactMobile() {
+                return siteContactMobile;
+            }
+
+            public void setSiteContactMobile(String siteContactMobile) {
+                this.siteContactMobile = siteContactMobile;
+            }
+
+            public String getSiteContactName() {
+                return siteContactName;
+            }
+
+            public void setSiteContactName(String siteContactName) {
+                this.siteContactName = siteContactName;
+            }
+
+            public String getSiteDetailLocation() {
+                return siteDetailLocation;
+            }
+
+            public void setSiteDetailLocation(String siteDetailLocation) {
+                this.siteDetailLocation = siteDetailLocation;
+            }
+
+            public String getSiteName() {
+                return siteName;
+            }
+
+            public void setSiteName(String siteName) {
+                this.siteName = siteName;
+            }
+
+            public String getSiteResourceUrl() {
+                return siteResourceUrl;
+            }
+
+            public void setSiteResourceUrl(String siteResourceUrl) {
+                this.siteResourceUrl = siteResourceUrl;
+            }
+
+            public int getState() {
+                return state;
+            }
+
+            public void setState(int state) {
+                this.state = state;
+            }
         }
 
-        @lombok.NoArgsConstructor
-        @lombok.Data
+
         public static class RecycleListDTO {
             /**
              * bargainCashPrice : (number)重新议价（元/kg）
@@ -111,6 +312,102 @@ public class OrderDetailsBean {
             private double recyleWeightNumber;
             private long refCleanOrderId;
             private int refGarbageCategoryId;
+
+            public double getBargainCashPrice() {
+                return bargainCashPrice;
+            }
+
+            public void setBargainCashPrice(double bargainCashPrice) {
+                this.bargainCashPrice = bargainCashPrice;
+            }
+
+            public double getBargainWeightNumber() {
+                return bargainWeightNumber;
+            }
+
+            public void setBargainWeightNumber(double bargainWeightNumber) {
+                this.bargainWeightNumber = bargainWeightNumber;
+            }
+
+            public double getCategoryCashPrice() {
+                return categoryCashPrice;
+            }
+
+            public void setCategoryCashPrice(double categoryCashPrice) {
+                this.categoryCashPrice = categoryCashPrice;
+            }
+
+            public String getCreateTime() {
+                return createTime;
+            }
+
+            public void setCreateTime(String createTime) {
+                this.createTime = createTime;
+            }
+
+            public String getGarbageCategoryName() {
+                return garbageCategoryName;
+            }
+
+            public void setGarbageCategoryName(String garbageCategoryName) {
+                this.garbageCategoryName = garbageCategoryName;
+            }
+
+            public long getId() {
+                return id;
+            }
+
+            public void setId(long id) {
+                this.id = id;
+            }
+
+            public boolean isAll() {
+                return isAll;
+            }
+
+            public void setAll(boolean all) {
+                isAll = all;
+            }
+
+            public boolean isBargain() {
+                return isBargain;
+            }
+
+            public void setBargain(boolean bargain) {
+                isBargain = bargain;
+            }
+
+            public double getRecylePrice() {
+                return recylePrice;
+            }
+
+            public void setRecylePrice(double recylePrice) {
+                this.recylePrice = recylePrice;
+            }
+
+            public double getRecyleWeightNumber() {
+                return recyleWeightNumber;
+            }
+
+            public void setRecyleWeightNumber(double recyleWeightNumber) {
+                this.recyleWeightNumber = recyleWeightNumber;
+            }
+
+            public long getRefCleanOrderId() {
+                return refCleanOrderId;
+            }
+
+            public void setRefCleanOrderId(long refCleanOrderId) {
+                this.refCleanOrderId = refCleanOrderId;
+            }
+
+            public int getRefGarbageCategoryId() {
+                return refGarbageCategoryId;
+            }
+
+            public void setRefGarbageCategoryId(int refGarbageCategoryId) {
+                this.refGarbageCategoryId = refGarbageCategoryId;
+            }
         }
     }
 }

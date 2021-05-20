@@ -45,7 +45,7 @@ public interface HttpApi {
     Observable<ResponseBody> getSubDriverList(@Body Map<String, List<String>> map);
 
     @POST("auth/shop/order/parent/detail")
-    Observable<ResponseBody> getParentOrderId(@Body Map<String,String> map);
+    Observable<ResponseBody> getParentOrderId(@Body Map<String,Long> map);
 
     @POST("auth/garbage/site/order/detail")
     Observable<ResponseBody> getOrderSiteDetails(@Body Map<String,Long> map);

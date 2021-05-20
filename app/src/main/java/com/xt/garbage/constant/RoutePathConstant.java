@@ -27,6 +27,12 @@ public class RoutePathConstant {
     public final static String SUBSCRIBE_ORDER_RECEIVE = "/app/site/order_subscribe_order_receive";
     public final static String SUBSCRIBE_ORDER_COMPLETE = "/app/site/order_subscribe_order_complete";
     public final static String SUBSCRIBE_ORDER_CANCEL = "/app/site/order_subscribe_order_cancel";
+    public final static String MOTOR_ORDER_DETAILS = "/app/motor/order_details";
+    public final static String APP_WAIT_PAY = "/app/shop/wait_pay";
+    public final static String APP_HAVE_TO_PAY = "/app/shop/have_to_pay";
+    public final static String APP_CANCEL = "/app/shop/cancel";
+    public final static String APP_COMPLETE = "/app/shop/complete";
+    public final static String APP_MESSAGE_LIST_DETAILS = "/app/message_list/details";
 
 
 

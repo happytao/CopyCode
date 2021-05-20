@@ -12,16 +12,20 @@ import com.xt.garbage.base.BaseActivity
 import com.xt.garbage.bean.garbage.OrderSubscribeDetailsBean
 import com.xt.garbage.bean.login.LoginBean
 import com.xt.garbage.bean.message.MessageListBean
+import com.xt.garbage.bean.motormain.OrderDetailsBean
+import com.xt.garbage.bean.shop.BatchDetailsBean
 import com.xt.garbage.bean.workmain.CleanOrderDetailsBean
 import com.xt.garbage.bean.workmain.OrderSiteDetailsBean
 import com.xt.garbage.constant.RoutePathConstant
 import com.xt.garbage.netSubscribe.garbage.DriverSubscribe
 import com.xt.garbage.netSubscribe.garbage.GarbageSubscribe
+import com.xt.garbage.netSubscribe.shop.ShopSubscribe
 import com.xt.garbage.netSubscribe.user.UserSubscribe
 import com.xt.garbage.netapi.OnSuccessAndFaultSub
 import kotlinx.android.synthetic.main.activity_message_list.*
 import com.xt.garbage.netapi.OnSuccessAndFaultListener
 import com.xt.garbage.utils.GsonUtils
+import com.xt.garbage.wigdt.Toolbar
 
 @Route(path = RoutePathConstant.APP_MESSAGE_LIST)
 class MessageListActivity : BaseActivity() {
@@ -29,7 +33,7 @@ class MessageListActivity : BaseActivity() {
     var message_type:Int = 0
     @Autowired(name = RoutePathConstant.MESSAGE)
     var messageListBean: MessageListBean? = null
-    var mList:MutableList<MessageListBean.ResultDTO.CleanMessageListDTO> = ArrayList()
+    var mList:MutableList<MessageListBean.ResultDTO.BaseMessageListDTO> = ArrayList()
     var messageAdapter:MessageAdapter? = null
 
 
@@ -54,12 +58,125 @@ class MessageListActivity : BaseActivity() {
                     goSub(mList[position].msgBussId)
                 }
                 2 -> {
-                    goClean()
+                    goClean(mList[position].msgBussId)
+                }
+                3 -> {
+                    goProvideHome(mList[position].msgBussId)
+                }
+                else -> {
+                    ARouter.getInstance().build(RoutePathConstant.APP_MESSAGE_LIST_DETAILS)
+                        .withObject(RoutePathConstant.MESSAGE,mList[position])
+                        .navigation()
                 }
             }
 
 
         }
+        initToolbar()
+    }
+
+    private fun initToolbar() {
+        toolbar.setOnToolbarOnClickListener(object : Toolbar.ToolbarClickListener{
+            override fun leftClick() {
+                finish()
+            }
+
+            override fun rightClick() {
+                TODO("Not yet implemented")
+            }
+        })
+        when(message_type) {
+            1 -> {
+                toolbar.title = "系统消息"
+                messageListBean?.result?.let { mList.addAll(it.sysMessageList) }
+            }
+
+        }
+    }
+
+    private fun goProvideHome(msgBussId: Long) {
+        var loginBean:LoginBean = login
+        if(loginBean.result.userInfoRespDTO.userType == 4) {
+            getSiteShopOrderInfo(msgBussId)
+        }
+        else {
+            getUserShopOrderInfo(msgBussId)
+        }
+    }
+
+    private fun getUserShopOrderInfo(msgBussId: Long) {
+        ShopSubscribe.getParentOrderDetails(msgBussId,OnSuccessAndFaultSub(object : OnSuccessAndFaultListener{
+            override fun onSuccess(result: String?) {
+                var batchDetailsBean:BatchDetailsBean? = GsonUtils.fromJson(result,BatchDetailsBean::class.java)
+                when(batchDetailsBean?.result?.orderStatus) {
+                    2 -> {
+                        ARouter.getInstance().build(RoutePathConstant.APP_WAIT_PAY)
+                            .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                            .navigation()
+                    }
+                    3 -> {
+                        ARouter.getInstance().build(RoutePathConstant.APP_HAVE_TO_PAY)
+                            .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                            .navigation()
+                    }
+
+                    4 -> {
+                        ARouter.getInstance().build(RoutePathConstant.APP_CANCEL)
+                            .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                            .navigation()
+                    }
+                    5 -> {
+                        ARouter.getInstance().build(RoutePathConstant.APP_COMPLETE)
+                            .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                            .navigation()
+                    }
+                    else -> {}
+                }
+            }
+
+            override fun onFailed(errorMsg: String?) {
+                TODO("Not yet implemented")
+            }
+        }))
+
+    }
+
+    private fun getSiteShopOrderInfo(msgBussId: Long) {
+        ShopSubscribe.getParentOrderDetails(msgBussId,OnSuccessAndFaultSub(object : OnSuccessAndFaultListener{
+            override fun onSuccess(result: String?) {
+                var batchDetailsBean:BatchDetailsBean = GsonUtils.fromJson(result,BatchDetailsBean::class.java)
+                if(batchDetailsBean.result.orderStatus == 3) {
+                    if(batchDetailsBean.result.isDistributionWay) {
+                        ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERDETAILS)
+                            .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                            .withInt(RoutePathConstant.ORDER_TYPE,2)
+                            .navigation()
+
+                    }
+                    else{
+                        ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERDETAILS)
+                            .withString(RoutePathConstant.ORDER_ID, batchDetailsBean.result.id)
+                            .withInt(RoutePathConstant.ORDER_TYPE,1)
+                            .navigation()
+                    }
+                }
+
+                else if(batchDetailsBean.result.orderStatus == 5) {
+                    ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERCOMPLETE)
+                        .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                        .navigation()
+                }
+                else {
+                    ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERCANCELDETAILS)
+                        .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                        .navigation()
+                }
+            }
+
+            override fun onFailed(errorMsg: String?) {
+                TODO("Not yet implemented")
+            }
+        }))
     }
 
     private fun goClean(msgBussId: Long) {
@@ -68,18 +185,24 @@ class MessageListActivity : BaseActivity() {
             getSiteCleanOrderInfo(msgBussId)
         }
         else {
-            getCleanOrderInfo()
+            getCleanOrderInfo(msgBussId)
         }
     }
 
     private fun getCleanOrderInfo(msgBussId: Long) {
         DriverSubscribe.getMotorOrderDetails(msgBussId,OnSuccessAndFaultSub(object : OnSuccessAndFaultListener{
             override fun onSuccess(result: String?) {
-                var orderDetailsBean:OrderDe
+                var orderDetailsBean:OrderDetailsBean = GsonUtils.fromJson(result,OrderDetailsBean::class.java)
+                if(orderDetailsBean.errorCode == 0) {
+                ARouter.getInstance().build(RoutePathConstant.MOTOR_ORDER_DETAILS)
+                    .withLong(RoutePathConstant.ORDER_ID,orderDetailsBean.result.id)
+                    .withInt(RoutePathConstant.ORDER_STATUS,orderDetailsBean.result.orderStatus)
+                    .navigation()
+                }
             }
 
             override fun onFailed(errorMsg: String?) {
-                TODO("Not yet implemented")
+                showToast("请求失败： $errorMsg")
             }
         }))
 
