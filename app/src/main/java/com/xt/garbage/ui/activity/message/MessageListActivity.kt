@@ -49,7 +49,7 @@ class MessageListActivity : BaseActivity() {
     override fun initData() {
         messageAdapter = MessageAdapter(mList)
         recyclerview.adapter = messageAdapter
-        messageAdapter?.setOnItemClickListener { adapter, view, position ->
+        messageAdapter?.setOnItemClickListener { _, _, position ->
             mList[position].isRead = true
             messageAdapter?.notifyDataSetChanged()
             setMessage(mList[position].id)
@@ -91,7 +91,23 @@ class MessageListActivity : BaseActivity() {
                 messageListBean?.result?.let { mList.addAll(it.sysMessageList) }
             }
 
+            2 -> {
+                toolbar.title = "清运消息"
+                messageListBean?.result?.let{ mList.addAll(it.cleanMessageList)}
+            }
+
+            3 -> {
+                toolbar.title = "预约上门"
+                messageListBean?.result?.let { mList.addAll(it.subscribeMessageList) }
+            }
+
+            4 -> {
+                toolbar.title = "送货上门"
+                messageListBean?.result?.let { mList.addAll(it.deliveryMessageList) }
+            }
+            else -> {}
         }
+        messageAdapter?.notifyDataSetChanged()
     }
 
     private fun goProvideHome(msgBussId: Long) {
@@ -111,23 +127,23 @@ class MessageListActivity : BaseActivity() {
                 when(batchDetailsBean?.result?.orderStatus) {
                     2 -> {
                         ARouter.getInstance().build(RoutePathConstant.APP_WAIT_PAY)
-                            .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                            .withString(RoutePathConstant.ORDER_ID_STRING,batchDetailsBean.result.id)
                             .navigation()
                     }
                     3 -> {
                         ARouter.getInstance().build(RoutePathConstant.APP_HAVE_TO_PAY)
-                            .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                            .withString(RoutePathConstant.ORDER_ID_STRING,batchDetailsBean.result.id)
                             .navigation()
                     }
 
                     4 -> {
                         ARouter.getInstance().build(RoutePathConstant.APP_CANCEL)
-                            .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                            .withString(RoutePathConstant.ORDER_ID_STRING,batchDetailsBean.result.id)
                             .navigation()
                     }
                     5 -> {
                         ARouter.getInstance().build(RoutePathConstant.APP_COMPLETE)
-                            .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                            .withString(RoutePathConstant.ORDER_ID_STRING,batchDetailsBean.result.id)
                             .navigation()
                     }
                     else -> {}
@@ -148,14 +164,14 @@ class MessageListActivity : BaseActivity() {
                 if(batchDetailsBean.result.orderStatus == 3) {
                     if(batchDetailsBean.result.isDistributionWay) {
                         ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERDETAILS)
-                            .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                            .withString(RoutePathConstant.ORDER_ID_STRING,batchDetailsBean.result.id)
                             .withInt(RoutePathConstant.ORDER_TYPE,2)
                             .navigation()
 
                     }
                     else{
                         ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERDETAILS)
-                            .withString(RoutePathConstant.ORDER_ID, batchDetailsBean.result.id)
+                            .withString(RoutePathConstant.ORDER_ID_STRING, batchDetailsBean.result.id)
                             .withInt(RoutePathConstant.ORDER_TYPE,1)
                             .navigation()
                     }
@@ -163,12 +179,12 @@ class MessageListActivity : BaseActivity() {
 
                 else if(batchDetailsBean.result.orderStatus == 5) {
                     ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERCOMPLETE)
-                        .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                        .withString(RoutePathConstant.ORDER_ID_STRING,batchDetailsBean.result.id)
                         .navigation()
                 }
                 else {
                     ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERCANCELDETAILS)
-                        .withString(RoutePathConstant.ORDER_ID,batchDetailsBean.result.id)
+                        .withString(RoutePathConstant.ORDER_ID_STRING,batchDetailsBean.result.id)
                         .navigation()
                 }
             }

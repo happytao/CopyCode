@@ -38,6 +38,7 @@ public class RoutePathConstant {
 
 
     public final static String ORDER_ID = "order_id";
+    public final static String ORDER_ID_STRING = "order_id_string";
     public final static String ORDER_TYPE = "order_type";
     public final static String ORDER_STATUS = "order_status";
     public final static String MESSAGE = "message";

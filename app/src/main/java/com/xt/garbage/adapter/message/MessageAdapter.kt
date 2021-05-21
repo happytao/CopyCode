@@ -14,8 +14,8 @@ import com.xt.garbage.bean.message.MessageListBean
  *@author:DIY
  *@date: 2021/5/19
  */
-class MessageAdapter(data: MutableList<MessageListBean.ResultDTO.CleanMessageListDTO>?) : BaseQuickAdapter<MessageListBean.ResultDTO.CleanMessageListDTO, BaseViewHolder>(layoutResId = R.layout.item_message, data),DraggableModule {
-    override fun convert(holder: BaseViewHolder, item: MessageListBean.ResultDTO.CleanMessageListDTO) {
+class MessageAdapter(data: MutableList<MessageListBean.ResultDTO.BaseMessageListDTO>?) : BaseQuickAdapter<MessageListBean.ResultDTO.BaseMessageListDTO, BaseViewHolder>(layoutResId = R.layout.item_message, data),DraggableModule {
+    override fun convert(holder: BaseViewHolder, item: MessageListBean.ResultDTO.BaseMessageListDTO) {
         holder.setText(R.id.tittle,item.msgTitle)
                 .setText(R.id.content,item.msgContent)
                 .setText(R.id.date,item.createTime)

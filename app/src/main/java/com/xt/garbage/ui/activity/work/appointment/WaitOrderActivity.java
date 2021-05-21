@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.xt.garbage.R;
 import com.xt.garbage.base.BaseActivity;
@@ -11,6 +12,8 @@ import com.xt.garbage.constant.RoutePathConstant;
 
 @Route(path = RoutePathConstant.WORK_APPOINTMENT_WAITER)
 public class WaitOrderActivity extends BaseActivity {
+    @Autowired(name = RoutePathConstant.ORDER_ID)
+    Long id = 0L;
 
     @Override
     protected int initLayout() {
