@@ -11,8 +11,10 @@ import kotlinx.android.synthetic.main.item_door.*
 
 @Route(path = RoutePathConstant.MOTOR_ORDER_DETAILS)
 class CleanOrderDetailsActivity : BaseActivity() {
+    @JvmField
     @Autowired(name = RoutePathConstant.ORDER_ID)
     var id:Long = 0L
+    @JvmField
     @Autowired(name = RoutePathConstant.ORDER_STATUS)
     var orderStatus:Int = 0
     override fun initLayout(): Int {

@@ -10,6 +10,7 @@ import com.xt.garbage.constant.RoutePathConstant
 
 @Route(path = RoutePathConstant.SUBSCRIBE_ORDER)
 class OrderSubscribeDetailsActivity : BaseActivity() {
+    @JvmField
     @Autowired(name = RoutePathConstant.ORDER_ID)
     var id:Long = 0
     override fun initLayout(): Int {

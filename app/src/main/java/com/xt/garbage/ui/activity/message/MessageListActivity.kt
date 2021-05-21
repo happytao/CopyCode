@@ -29,8 +29,11 @@ import com.xt.garbage.wigdt.Toolbar
 
 @Route(path = RoutePathConstant.APP_MESSAGE_LIST)
 class MessageListActivity : BaseActivity() {
+
+    @JvmField
     @Autowired(name = RoutePathConstant.MESSAGE_TYPE)
     var message_type:Int = 0
+    @JvmField
     @Autowired(name = RoutePathConstant.MESSAGE)
     var messageListBean: MessageListBean? = null
     var mList:MutableList<MessageListBean.ResultDTO.BaseMessageListDTO> = ArrayList()
@@ -161,31 +164,33 @@ class MessageListActivity : BaseActivity() {
         ShopSubscribe.getParentOrderDetails(msgBussId,OnSuccessAndFaultSub(object : OnSuccessAndFaultListener{
             override fun onSuccess(result: String?) {
                 var batchDetailsBean:BatchDetailsBean = GsonUtils.fromJson(result,BatchDetailsBean::class.java)
-                if(batchDetailsBean.result.orderStatus == 3) {
-                    if(batchDetailsBean.result.isDistributionWay) {
-                        ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERDETAILS)
+                batchDetailsBean.result?.let {
+                    if(batchDetailsBean.result.orderStatus == 3) {
+                        if(batchDetailsBean.result.isDistributionWay) {
+                            ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERDETAILS)
+                                .withString(RoutePathConstant.ORDER_ID_STRING,batchDetailsBean.result.id)
+                                .withInt(RoutePathConstant.ORDER_TYPE,2)
+                                .navigation()
+
+                        }
+                        else{
+                            ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERDETAILS)
+                                .withString(RoutePathConstant.ORDER_ID_STRING, batchDetailsBean.result.id)
+                                .withInt(RoutePathConstant.ORDER_TYPE,1)
+                                .navigation()
+                        }
+                    }
+
+                    else if(batchDetailsBean.result.orderStatus == 5) {
+                        ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERCOMPLETE)
                             .withString(RoutePathConstant.ORDER_ID_STRING,batchDetailsBean.result.id)
-                            .withInt(RoutePathConstant.ORDER_TYPE,2)
-                            .navigation()
-
-                    }
-                    else{
-                        ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERDETAILS)
-                            .withString(RoutePathConstant.ORDER_ID_STRING, batchDetailsBean.result.id)
-                            .withInt(RoutePathConstant.ORDER_TYPE,1)
                             .navigation()
                     }
-                }
-
-                else if(batchDetailsBean.result.orderStatus == 5) {
-                    ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERCOMPLETE)
-                        .withString(RoutePathConstant.ORDER_ID_STRING,batchDetailsBean.result.id)
-                        .navigation()
-                }
-                else {
-                    ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERCANCELDETAILS)
-                        .withString(RoutePathConstant.ORDER_ID_STRING,batchDetailsBean.result.id)
-                        .navigation()
+                    else {
+                        ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERCANCELDETAILS)
+                            .withString(RoutePathConstant.ORDER_ID_STRING,batchDetailsBean.result.id)
+                            .navigation()
+                    }
                 }
             }
 

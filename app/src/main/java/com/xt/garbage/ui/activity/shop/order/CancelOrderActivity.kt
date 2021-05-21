@@ -10,6 +10,7 @@ import com.xt.garbage.constant.RoutePathConstant
 
 @Route(path = RoutePathConstant.APP_CANCEL)
 class CancelOrderActivity : BaseActivity() {
+    @JvmField
     @Autowired(name = RoutePathConstant.ORDER_ID_STRING)
     var id:String = ""
     override fun initLayout(): Int {

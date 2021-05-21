@@ -12,7 +12,6 @@
         android:layout_height="48dp"
         app:leftBackground="@drawable/left_icon"
         app:titleTextColor="@color/color_000000"
-        app:title="清运消息"
         android:background="@color/white"
         android:id="@+id/toolbar"/>
 

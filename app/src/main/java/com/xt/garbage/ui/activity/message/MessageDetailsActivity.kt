@@ -11,6 +11,7 @@ import com.xt.garbage.constant.RoutePathConstant
 
 @Route(path = RoutePathConstant.APP_MESSAGE_LIST_DETAILS)
 class MessageDetailsActivity : BaseActivity() {
+    @JvmField
     @Autowired(name = RoutePathConstant.MESSAGE)
     var baseMessageListDTO :MessageListBean.ResultDTO.BaseMessageListDTO? = null
     override fun initLayout(): Int {

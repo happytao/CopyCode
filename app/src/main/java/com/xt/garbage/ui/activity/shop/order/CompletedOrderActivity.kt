@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.item_door.*
 
 @Route(path = RoutePathConstant.APP_COMPLETE)
 class CompletedOrderActivity : BaseActivity() {
+    @JvmField
     @Autowired(name = RoutePathConstant.ORDER_ID_STRING)
     var id:String = ""
     override fun initLayout(): Int {
