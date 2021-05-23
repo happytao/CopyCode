@@ -3,18 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.xt.garbage">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission
-        android:name="android.permission.HARDWARE_TEST"
-        tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -25,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.site.OrderSubscribeCancelActivity"></activity>
+        <activity android:name=".ui.activity.UserInfoActivity"></activity>
+        <activity android:name=".ui.activity.site.OrderSubscribeCancelActivity" />
         <activity android:name=".ui.activity.site.OrderSubscribeCompleteActivity" />
         <activity android:name=".ui.activity.site.OrderSubscribeReceivedActivity" />
         <activity android:name=".ui.activity.site.OrderSubscribeDetailsActivity" />
@@ -64,5 +53,17 @@
             android:name=".ui.activity.login.LoginMainActivity"
             android:launchMode="singleTask" />
     </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.HARDWARE_TEST"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
 
 </manifest>

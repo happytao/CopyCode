@@ -154,7 +154,7 @@ public class PsdLoginActivity extends BaseActivity implements View.OnClickListen
 
     private void goWorkMain() {
         ARouter.getInstance().build(RoutePathConstant.APP_WORKMAIN).navigation();
-        ActivityCollector.finishAll();
+//        ActivityCollector.finishAll();
 
     }
 }
