@@ -18,6 +18,7 @@ import com.xt.garbage.R
 import com.xt.garbage.base.BaseActivity
 import com.xt.garbage.base.BaseConstant
 import com.xt.garbage.glide.GlideEngine
+import com.xt.garbage.utils.CompressHelper
 import com.xt.garbage.utils.FileUtil
 import com.xt.garbage.utils.ImageLoaderUtil
 import com.xt.garbage.wigdt.Toolbar
@@ -135,7 +136,7 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun compressWithLs(file: File) {
-        var oldFile:File = CompressHelper
+        var oldFile:File = CompressHelper.
 
     }
 

@@ -6,8 +6,11 @@ import android.database.Cursor;
 import android.media.audiofx.AcousticEchoCanceler;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 
 import com.luck.picture.lib.PictureSelector;
+
+import java.io.File;
 
 /**
  * @author:DIY
@@ -63,5 +66,44 @@ public class FileUtil {
             cursor.close();
             return realPath;
         }
+    }
+
+    public static String[] splitFileName(String fileName) {
+        String name = fileName;
+        String extension = "";
+        int i = fileName.lastIndexOf(".") ;
+        if(i != -1) {
+            name = fileName.substring(0,i);
+            extension = fileName.substring(i);
+        }
+
+        return new String[]{name,extension};
+    }
+
+    public static String getFileName(Context context,Uri uri) {
+        String result = null;
+        if(uri.getScheme().equals("content")) {
+            Cursor cursor = context.getContentResolver().query(uri,null,null,null,null);
+            try {
+                if(cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            }catch (Exception e) {
+                e.printStackTrace();
+            }finally {
+                if(cursor != null) {
+                    cursor.close();
+                }
+            }
+        }
+
+        if(result != null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf(File.separator);
+            if(cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return  result;
     }
 }

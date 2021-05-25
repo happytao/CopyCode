@@ -2,6 +2,7 @@ package com.xt.garbage.utils
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.net.Uri
 import java.io.File
 
 /**
@@ -16,6 +17,8 @@ class CompressHelper() {
         val instance:CompressHelper by lazy {
             CompressHelper()
         }
+
+
     }
 
     private var context:Context? = null
@@ -41,14 +44,19 @@ class CompressHelper() {
     }
 
     init {
-        context.cacheDir?.let { destinationDirectoryPath = it.path + File.pathSeparator + FileUtil.FILES_PATH }
+        context?.cacheDir?.let { destinationDirectoryPath = it.path + File.pathSeparator + FileUtil.FILES_PATH }
     }
 
 
-    fun compressToFile(file:File):File {
-        return
-
+    fun compressToFile(file:File):File? {
+        if(context != null && destinationDirectoryPath != null && fileNamePrefix != null && fileName != null){
+            return  BitmapUtil.compressImage(context!!, Uri.fromFile(file),maxWidth,maxHeight,
+                    compressFormat,bitmapConfig,quality, destinationDirectoryPath!!, fileNamePrefix!!, fileName!!)
+        }
+        return null
     }
+
+
 
 
 

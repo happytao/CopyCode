@@ -35,6 +35,7 @@ import com.xt.garbage.constant.RoutePathConstant;
 import com.xt.garbage.netSubscribe.garbage.DriverSubscribe;
 import com.xt.garbage.netapi.OnSuccessAndFaultListener;
 import com.xt.garbage.netapi.OnSuccessAndFaultSub;
+import com.xt.garbage.utils.CompressHelper;
 import com.xt.garbage.utils.GsonUtils;
 import com.xt.garbage.utils.ImageLoaderUtil;
 import com.xt.garbage.wigdt.Toolbar;

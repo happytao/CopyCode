@@ -4,11 +4,9 @@ import android.content.Context
 import android.graphics.*
 import android.media.ExifInterface
 import android.net.Uri
+import android.text.TextUtils
 import android.util.Log
-import java.io.FileInputStream
-import java.io.FileNotFoundException
-import java.io.IOException
-import java.io.InputStream
+import java.io.*
 import java.lang.UnsupportedOperationException
 import kotlin.math.roundToInt
 
@@ -26,7 +24,7 @@ class BitmapUtil {
             var filePath:String = FileUtil.getRealPathFromURI(context,imageUri)
             var scaledBitmap:Bitmap? = null
             var options:BitmapFactory.Options = BitmapFactory.Options()
-
+            //通过设定@options.inJustDecodeBounds这个变量为true，实际Bitmap的像素将不会加载到内存中，只会加载该图片的高度宽度信息
             options.inJustDecodeBounds = true
             var bmp:Bitmap = BitmapFactory.decodeFile(filePath,options)
             bmp?.let {
@@ -72,6 +70,7 @@ class BitmapUtil {
             var imgRatio:Float = (actualWidth/actualHeight).toFloat()
             var maxRatio:Float = maxWidth/maxHeight
 
+            //设置宽度和高度保持图片的宽高比
             if(actualHeight > maxHeight || actualWidth > maxWidth) {
                 if(imgRatio < maxRatio) {
                     imgRatio = maxHeight / actualHeight
@@ -88,9 +87,10 @@ class BitmapUtil {
                     actualWidth = maxWidth.toInt()
                 }
             }
-
+            //设置@options.inSampleSize来加载一个等比例缩小的图片
             options.inSampleSize = calculateInSampleSize(options,actualWidth,actualHeight)
 
+            //设置为false来加载真实图片
             options.inJustDecodeBounds = false
             options.inPurgeable = true
             options.inInputShareable = true
@@ -133,9 +133,28 @@ class BitmapUtil {
                 exif = ExifInterface(filePath)
                 var orientation:Int = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,0)
                 var matrix:Matrix = Matrix()
-                if(orientation)
+                when(orientation) {
+                    6 -> {
+                        matrix.postRotate(90f)
+                    }
 
+                    3 -> {
+                        matrix.postRotate(180f)
+                    }
+
+                    8 -> {
+                        matrix.postRotate(270f)
+                    }
+                    else -> { }
+
+                }
+                scaledBitmap = scaledBitmap?.let { Bitmap.createBitmap(it,0,0,it.width,it.height,matrix,true) }
+
+            } catch (exception:IOException) {
+                exception.printStackTrace()
             }
+
+            return scaledBitmap
         }
 
         private fun calculateInSampleSize(options:BitmapFactory.Options,reqWidth:Int,reqHeight:Int): Int {
@@ -158,6 +177,27 @@ class BitmapUtil {
             }
 
             return  inSampleSize
+
+        }
+
+        fun compressImage(context: Context, imageUri: Uri, maxWidth: Float, maxHeight: Float, compressFormat: Bitmap.CompressFormat,
+                          bitmapConfig: Bitmap.Config, quality:Int, parentPath:String, prefix:String, fileName:String):File {
+            var filename:String = generateFilePath(context,parentPath,imageUri,compressFormat.name.toLowerCase(),prefix,fileName)
+            FileOutputStream(filename).use {
+                var newBmp:Bitmap? = BitmapUtil.getScaledBitmap(context,imageUri,maxWidth,maxHeight,bitmapConfig)
+                newBmp?.compress(compressFormat,quality,it)
+            }
+            return File(filename)
+
+
+        }
+
+        private fun generateFilePath(context: Context,parentPath: String,uri: Uri,extension:String, prefix: String,fileName: String): String {
+            var file:File = File(parentPath)
+            if(file.exists()) file.mkdir()
+            var myPrefix = if (TextUtils.isEmpty(fileName)) ""  else prefix
+            var myFileName = if (TextUtils.isEmpty(fileName)) myPrefix + FileUtil.splitFileName(FileUtil.getFileName(context,uri))[0] else fileName
+            return file.absolutePath + File.separator + myFileName + "." + extension
 
         }
     }
