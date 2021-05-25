@@ -4,13 +4,16 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.rxjava3.core.Observable;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 /**
  * @author:DIY
@@ -36,6 +39,9 @@ public interface HttpApi {
 
     @GET("auth/clean/site/order/recycle/warehouse/list")
     Observable<ResponseBody> getWareHouseList();
+
+    @GET("auth/address/list")
+    Observable<ResponseBody> getAddress();
 
     //预约上门list
     @POST("auth/garbage/site/order/site/subscribe/list")
@@ -74,5 +80,14 @@ public interface HttpApi {
     //清运司机获取订单详情
     @POST("auth/clean/motorman/order/detail")
     Observable<ResponseBody> getMotorOrderDetails(@Body Map<String,Long> map);
+
+    //上传照片
+    @Multipart
+    @POST("auth/file/upload")
+    Observable<ResponseBody> postPhoto(@Part MultipartBody.Part uploadFile);
+
+    //个人信息修改
+    @POST("auth/user/info/update")
+    Observable<ResponseBody> userInfoUp(@Body Map<String,String> map);
 
 }

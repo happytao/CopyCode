@@ -33,6 +33,8 @@ public class RoutePathConstant {
     public final static String APP_CANCEL = "/app/shop/cancel";
     public final static String APP_COMPLETE = "/app/shop/complete";
     public final static String APP_MESSAGE_LIST_DETAILS = "/app/message_list/details";
+    public final static String APP_SETTING_NICK = "/app/setting/modify";
+    public final static String ADD_ADDRESS = "/app/shop/add_address";
 
 
 

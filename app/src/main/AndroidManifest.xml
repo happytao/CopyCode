@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.UserInfoActivity"></activity>
+        <activity android:name=".ui.activity.shop.AddressActivity"></activity>
+        <activity android:name=".ui.activity.UserInfoActivity" />
         <activity android:name=".ui.activity.site.OrderSubscribeCancelActivity" />
         <activity android:name=".ui.activity.site.OrderSubscribeCompleteActivity" />
         <activity android:name=".ui.activity.site.OrderSubscribeReceivedActivity" />

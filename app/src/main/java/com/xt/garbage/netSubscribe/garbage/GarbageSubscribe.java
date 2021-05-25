@@ -46,4 +46,13 @@ public class GarbageSubscribe {
         RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
     }
 
+    public static void userInfoUp(String nickName,String head,String detailAddress,DisposableObserver<ResponseBody> subscribe) {
+        Map<String,String> map = new HashMap<>();
+        map.put("nickName",nickName);
+        map.put("head",head);
+        map.put("detailAddress",detailAddress);
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().userInfoUp(map);
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
+    }
+
 }

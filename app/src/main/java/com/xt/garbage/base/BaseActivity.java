@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -220,6 +221,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         ActivityCollector.removeActivity(this);
 
     }
+
 
     /**
      * 接收分发的事件

@@ -29,4 +29,10 @@ public class ShopSubscribe {
         Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().getParentOrderId(map);
         RetrofitFactory.getInstance().toSubscribe(observable,subscriber);
     }
+
+    public static void getAddress(DisposableObserver<ResponseBody> subscribe) {
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().getAddress();
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
+
+    }
 }

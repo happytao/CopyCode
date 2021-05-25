@@ -48,6 +48,7 @@ import butterknife.BindInt;
 import butterknife.BindView;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
+import okhttp3.OkHttpClient;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnPermissionDenied;
 import permissions.dispatcher.OnShowRationale;

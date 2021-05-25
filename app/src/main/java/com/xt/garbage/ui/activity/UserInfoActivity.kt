@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.alibaba.android.arouter.launcher.ARouter
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
@@ -17,10 +18,17 @@ import com.luck.picture.lib.entity.LocalMedia
 import com.xt.garbage.R
 import com.xt.garbage.base.BaseActivity
 import com.xt.garbage.base.BaseConstant
+import com.xt.garbage.bean.constant.SpConstant
+import com.xt.garbage.bean.login.LoginBean
+import com.xt.garbage.bean.motormain.ReceiveOrderBean
+import com.xt.garbage.bean.user.UploadBean
+import com.xt.garbage.constant.RoutePathConstant
 import com.xt.garbage.glide.GlideEngine
-import com.xt.garbage.utils.CompressHelper
-import com.xt.garbage.utils.FileUtil
-import com.xt.garbage.utils.ImageLoaderUtil
+import com.xt.garbage.netSubscribe.garbage.DriverSubscribe
+import com.xt.garbage.netSubscribe.garbage.GarbageSubscribe
+import com.xt.garbage.netapi.OnSuccessAndFaultListener
+import com.xt.garbage.netapi.OnSuccessAndFaultSub
+import com.xt.garbage.utils.*
 import com.xt.garbage.wigdt.Toolbar
 import kotlinx.android.synthetic.main.activity_user_info.*
 import java.io.File
@@ -92,6 +100,14 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener {
             R.id.head_layout -> {
                 selectPhoto()
             }
+
+            R.id.nickname_layout -> {
+                ARouter.getInstance().build(RoutePathConstant.APP_SETTING_NICK)
+                        .navigation()
+            }
+            R.id.site_layout -> {
+                var addResDialogFragment:
+            }
         }
     }
 
@@ -136,7 +152,52 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun compressWithLs(file: File) {
-        var oldFile:File = CompressHelper.
+        var oldFile: File? = CompressHelper(applicationContext).compressToFile(file)
+        oldFile?.let { postPhoto(oldFile) }
+
+    }
+
+    private fun postPhoto(pathUrl: File) {
+        DriverSubscribe.postPhoto(pathUrl,OnSuccessAndFaultSub(object : OnSuccessAndFaultListener{
+            override fun onSuccess(result: String?) {
+                result?.let {
+                    var uploadBean:UploadBean = GsonUtils.fromJson(result,UploadBean::class.java)
+                    if(uploadBean.errorCode == 0) {
+                        userInfoUp(uploadBean.result)
+                    }
+                }
+
+            }
+
+            override fun onFailed(errorMsg: String?) {
+                TODO("Not yet implemented")
+            }
+        }))
+
+    }
+
+    private fun userInfoUp(imageUrl: String?) {
+        GarbageSubscribe.userInfoUp(null,imageUrl,null,OnSuccessAndFaultSub(object : OnSuccessAndFaultListener{
+            override fun onSuccess(result: String?) {
+                result?.let {
+                    var deliverySuccessBean:ReceiveOrderBean = GsonUtils.fromJson(result,ReceiveOrderBean::class.java)
+                    if(deliverySuccessBean.errorCode == 0) {
+                        ImageLoaderUtil.loadCircleImage(context,BaseConstant.URLPREFIX+imageUrl,head_image)
+                        var loginBean:LoginBean = login
+                        loginBean.result.userInfoRespDTO.head = imageUrl
+                        var loginString:String = GsonUtils.toJson(loginBean)
+                        SPUtils.put(context,SpConstant.APP_LOGINBEAN,loginString)
+                        showToast("头像更改成功")
+
+                    }
+                }
+            }
+
+            override fun onFailed(errorMsg: String?) {
+                showToast("请求失败: $errorMsg")
+            }
+        },this))
+
 
     }
 
@@ -149,4 +210,8 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener {
         f.invoke(true)
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        initUserInfo()
+    }
 }
