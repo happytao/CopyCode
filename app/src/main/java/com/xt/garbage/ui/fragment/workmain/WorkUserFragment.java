@@ -81,6 +81,8 @@ public class WorkUserFragment extends BaseFragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.feedback_layout:
+                ARouter.getInstance().build(RoutePathConstant.APP_SETTING_FEEDBACK)
+                        .navigation();
                 break;
             case R.id.out_layout:
                 showDialog();
@@ -89,6 +91,10 @@ public class WorkUserFragment extends BaseFragment implements View.OnClickListen
                 ARouter.getInstance().build(RoutePathConstant.APP_SETTING_ABOUT).navigation();
                 break;
             case R.id.pri_layout:
+                ARouter.getInstance().build(RoutePathConstant.APP_SETTING_WEB_VIEW)
+                        .withString(RoutePathConstant.URL,"http://www.bilibili.com")
+                        .withString(RoutePathConstant.TITLE,"隐私协议")
+                        .navigation();
                 break;
             case R.id.head_layout:
                 ARouter.getInstance().build(RoutePathConstant.APP_SETTING_USER).navigation();

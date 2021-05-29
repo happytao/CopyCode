@@ -38,6 +38,8 @@ public class RoutePathConstant {
     public final static String APP_SETTING_USER = "/app/setting/user";
     public final static String APP_SETTING_MODIFY = "/app/setting/modify";
     public final static String APP_SETTING_ABOUT = "/app/setting/about";
+    public final static String APP_SETTING_WEB_VIEW = "/app/setting/web_view";
+    public final static String APP_SETTING_FEEDBACK = "/app/setting/feedback";
 
 
 
@@ -56,6 +58,8 @@ public class RoutePathConstant {
     public final static String DRIVER_CLEAN = "driver_clean";
     public final static String DRIVER_CODE = "driver_code";
     public final static String DRIVER_PHONE = "driver_phone";
+    public final static String URL = "url";
+    public final static String TITLE = "title";
 
 
     public final static String SERVICE_JSON = "/service/json";

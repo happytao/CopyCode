@@ -74,4 +74,11 @@ public class DriverSubscribe {
         Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().postPhoto(body);
         RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
     }
+
+    public static void feedback(String feedbackContent,DisposableObserver<ResponseBody> subscribe) {
+        Map<String,String> map = new HashMap<>();
+        map.put("feedbackContent",feedbackContent);
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().feedback(map);
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
+    }
 }

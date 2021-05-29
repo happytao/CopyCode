@@ -98,4 +98,8 @@ public interface HttpApi {
     @POST("auth/user/password/update")
     Observable<ResponseBody> upPassword(@Body Map<String,String> map);
 
+    //用户反馈
+    @POST("auth/user/feedback/opinion")
+    Observable<ResponseBody> feedback(@Body Map<String,String> map);
+
 }

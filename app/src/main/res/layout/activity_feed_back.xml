@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.setting.FeedbackActivity"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.xt.garbage.wigdt.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:leftBackground="@drawable/left_icon"
+        app:titleTextColor="@color/color_000000"
+        app:title="意见反馈"
+        android:background="@color/white"
+        android:id="@+id/toolbar"/>
+
+    <TextView
+        style="@style/text_cc000000_14sp"
+        android:layout_marginTop="16dp"
+        android:text="请输入要反馈内容"
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="145dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bg_editline">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:id="@+id/edit_input"
+            android:hint="请输入至少10字以上内容"
+            android:gravity="top"
+            android:padding="12dp"
+            android:textColor="@color/color_CC000000"
+            android:textColorHint="@color/color_66000000"
+            android:textSize="14sp"
+            android:background="@null"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:text="0/100"
+            android:textColor="@color/color_66000000"
+            android:textSize="14sp"
+            android:id="@+id/text_input_number"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/color_66000000"
+        android:text="温馨提示"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/color_66000000"
+        android:text="我们的工作人员有可能会根据您的意见反馈进行电话回访"
+        android:layout_marginLeft="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/btn_confirm_style"
+        android:id="@+id/btn_send"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="提交"/>
+
+</LinearLayout>
