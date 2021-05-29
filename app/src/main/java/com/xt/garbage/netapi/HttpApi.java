@@ -51,7 +51,7 @@ public interface HttpApi {
     Observable<ResponseBody> getSubDriverList(@Body Map<String, List<String>> map);
 
     @POST("auth/shop/order/parent/detail")
-    Observable<ResponseBody> getParentOrderId(@Body Map<String,Long> map);
+    Observable<ResponseBody> getParentOrderId(@Body Map<String,String> map);
 
     @POST("auth/garbage/site/order/detail")
     Observable<ResponseBody> getOrderSiteDetails(@Body Map<String,Long> map);
@@ -89,5 +89,13 @@ public interface HttpApi {
     //个人信息修改
     @POST("auth/user/info/update")
     Observable<ResponseBody> userInfoUp(@Body Map<String,String> map);
+
+    //发送短信
+    @POST("optionauth/sms/send")
+    Observable<ResponseBody> sendSms(@Body Map<String,String> map);
+
+    //修改密码
+    @POST("auth/user/password/update")
+    Observable<ResponseBody> upPassword(@Body Map<String,String> map);
 
 }

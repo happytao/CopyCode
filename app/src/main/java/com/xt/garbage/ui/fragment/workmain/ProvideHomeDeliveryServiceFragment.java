@@ -129,7 +129,7 @@ public class ProvideHomeDeliveryServiceFragment extends BaseFragment implements 
                 if(mShopOrderList.get(position).getOrderStatus() == 3) {
                     if(mShopOrderList.get(position).getReceiveStatus() == 2) {
                         ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERDETAILS)
-                                .withString(RoutePathConstant.ORDER_ID,mShopOrderList.get(position).getId())
+                                .withString(RoutePathConstant.ORDER_ID_STRING,mShopOrderList.get(position).getId())
                                 .withInt(RoutePathConstant.ORDER_TYPE,1)
                                 .navigation();
 
@@ -138,12 +138,12 @@ public class ProvideHomeDeliveryServiceFragment extends BaseFragment implements 
 
                 else if(mShopOrderList.get(position).getOrderStatus() == 5) {
                     ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERCOMPLETE)
-                            .withString(RoutePathConstant.ORDER_ID,mShopOrderList.get(position).getId())
+                            .withString(RoutePathConstant.ORDER_ID_STRING,mShopOrderList.get(position).getId())
                             .navigation();
                 }
                 else {
                     ARouter.getInstance().build(RoutePathConstant.SITE_SHSMORDERCANCELDETAILS)
-                            .withString(RoutePathConstant.ORDER_ID,mShopOrderList.get(position).getId())
+                            .withString(RoutePathConstant.ORDER_ID_STRING,mShopOrderList.get(position).getId())
                             .navigation();
                 }
             }

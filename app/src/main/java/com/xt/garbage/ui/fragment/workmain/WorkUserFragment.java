@@ -86,12 +86,15 @@ public class WorkUserFragment extends BaseFragment implements View.OnClickListen
                 showDialog();
                 break;
             case R.id.about_layout:
+                ARouter.getInstance().build(RoutePathConstant.APP_SETTING_ABOUT).navigation();
                 break;
             case R.id.pri_layout:
                 break;
             case R.id.head_layout:
+                ARouter.getInstance().build(RoutePathConstant.APP_SETTING_USER).navigation();
                 break;
             case R.id.psd_layout:
+                ARouter.getInstance().build(RoutePathConstant.APP_SETTING_MODIFY).navigation();
                 break;
         }
 

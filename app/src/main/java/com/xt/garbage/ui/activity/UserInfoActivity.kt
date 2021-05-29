@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
@@ -28,12 +29,13 @@ import com.xt.garbage.netSubscribe.garbage.DriverSubscribe
 import com.xt.garbage.netSubscribe.garbage.GarbageSubscribe
 import com.xt.garbage.netapi.OnSuccessAndFaultListener
 import com.xt.garbage.netapi.OnSuccessAndFaultSub
+import com.xt.garbage.ui.dialog.AddResDialogFragment
 import com.xt.garbage.utils.*
 import com.xt.garbage.wigdt.Toolbar
 import kotlinx.android.synthetic.main.activity_user_info.*
 import java.io.File
 
-
+@Route(path = RoutePathConstant.APP_SETTING_USER)
 class UserInfoActivity : BaseActivity(), View.OnClickListener {
     private var permissions: Array<String> = arrayOf(Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE)
     var requestCode:Int = 1000
@@ -106,7 +108,10 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener {
                         .navigation()
             }
             R.id.site_layout -> {
-                var addResDialogFragment:
+                var addResDialogFragment:AddResDialogFragment = AddResDialogFragment.instance
+                addResDialogFragment.show(supportFragmentManager,AddResDialogFragment.TAG)
+
+
             }
         }
     }
@@ -170,7 +175,7 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener {
             }
 
             override fun onFailed(errorMsg: String?) {
-                TODO("Not yet implemented")
+                showToast("请求失败： $errorMsg")
             }
         }))
 

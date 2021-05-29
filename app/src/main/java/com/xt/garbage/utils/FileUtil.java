@@ -97,7 +97,7 @@ public class FileUtil {
             }
         }
 
-        if(result != null) {
+        if(result == null) {
             result = uri.getPath();
             int cut = result.lastIndexOf(File.separator);
             if(cut != -1) {

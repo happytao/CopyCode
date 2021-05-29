@@ -124,7 +124,7 @@ class MessageListActivity : BaseActivity() {
     }
 
     private fun getUserShopOrderInfo(msgBussId: Long) {
-        ShopSubscribe.getParentOrderDetails(msgBussId,OnSuccessAndFaultSub(object : OnSuccessAndFaultListener{
+        ShopSubscribe.getParentOrderDetails(msgBussId.toString(),OnSuccessAndFaultSub(object : OnSuccessAndFaultListener{
             override fun onSuccess(result: String?) {
                 var batchDetailsBean:BatchDetailsBean? = GsonUtils.fromJson(result,BatchDetailsBean::class.java)
                 when(batchDetailsBean?.result?.orderStatus) {
@@ -161,7 +161,7 @@ class MessageListActivity : BaseActivity() {
     }
 
     private fun getSiteShopOrderInfo(msgBussId: Long) {
-        ShopSubscribe.getParentOrderDetails(msgBussId,OnSuccessAndFaultSub(object : OnSuccessAndFaultListener{
+        ShopSubscribe.getParentOrderDetails(msgBussId.toString(),OnSuccessAndFaultSub(object : OnSuccessAndFaultListener{
             override fun onSuccess(result: String?) {
                 var batchDetailsBean:BatchDetailsBean = GsonUtils.fromJson(result,BatchDetailsBean::class.java)
                 batchDetailsBean.result?.let {

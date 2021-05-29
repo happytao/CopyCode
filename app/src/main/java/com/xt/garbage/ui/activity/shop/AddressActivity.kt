@@ -14,11 +14,11 @@ import com.xt.garbage.constant.RoutePathConstant
 @Route(path = RoutePathConstant.ADD_ADDRESS)
 class AddressActivity : BaseActivity(), View.OnClickListener {
     companion object {
-        fun newInstance(activity: Activity, addressRespBean:GetAddressResultBean.ResultDTO,code:Int){
+        fun newInstance(activity: Activity?, addressRespBean:GetAddressResultBean.ResultDTO?,code:Int){
             var intent : Intent = Intent(activity,AddressActivity::class.java)
             intent.putExtra("bean",addressRespBean)
             intent.putExtra(RoutePathConstant.ADD_ADDRESS,code)
-            activity.startActivity(intent)
+            activity?.startActivity(intent)
 
         }
     }

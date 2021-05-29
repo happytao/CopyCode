@@ -7,6 +7,7 @@ import android.net.Uri
 import android.text.TextUtils
 import android.util.Log
 import java.io.*
+import java.lang.Exception
 import java.lang.UnsupportedOperationException
 import kotlin.math.roundToInt
 
@@ -181,23 +182,36 @@ class BitmapUtil {
         }
 
         fun compressImage(context: Context, imageUri: Uri, maxWidth: Float, maxHeight: Float, compressFormat: Bitmap.CompressFormat,
-                          bitmapConfig: Bitmap.Config, quality:Int, parentPath:String, prefix:String, fileName:String):File {
-            var filename:String = generateFilePath(context,parentPath,imageUri,compressFormat.name.toLowerCase(),prefix,fileName)
-            FileOutputStream(filename).use {
+                          bitmapConfig: Bitmap.Config, quality:Int, parentPath:String?, prefix:String?, fileName:String?):File {
+            var filename:String? = generateFilePath(context,parentPath,imageUri,compressFormat.name.toLowerCase(),prefix,fileName)
+            try {
+                var out = FileOutputStream(filename)
                 var newBmp:Bitmap? = BitmapUtil.getScaledBitmap(context,imageUri,maxWidth,maxHeight,bitmapConfig)
-                newBmp?.compress(compressFormat,quality,it)
+                newBmp?.compress(compressFormat,quality,out)
+            } catch (e: Exception) {
+                Log.e("TAG",Log.getStackTraceString(e))
             }
+
+
             return File(filename)
 
 
         }
 
-        private fun generateFilePath(context: Context,parentPath: String,uri: Uri,extension:String, prefix: String,fileName: String): String {
-            var file:File = File(parentPath)
-            if(file.exists()) file.mkdir()
-            var myPrefix = if (TextUtils.isEmpty(fileName)) ""  else prefix
-            var myFileName = if (TextUtils.isEmpty(fileName)) myPrefix + FileUtil.splitFileName(FileUtil.getFileName(context,uri))[0] else fileName
-            return file.absolutePath + File.separator + myFileName + "." + extension
+        private fun generateFilePath(context: Context,parentPath: String?,uri: Uri,extension:String?, prefix: String?,fileName: String?): String? {
+            try {
+                var file:File = File(parentPath)
+                if(!file.exists()) file.mkdirs()
+                var myPrefix = if (TextUtils.isEmpty(fileName)) ""  else prefix
+                var myFileName = if (TextUtils.isEmpty(fileName)) myPrefix + FileUtil.splitFileName(FileUtil.getFileName(context,uri))[0] else fileName
+                return file.absolutePath + File.separator + myFileName + "." + extension
+            }
+            catch (e:Exception) {
+                Log.e("TAG",Log.getStackTraceString(e))
+            }
+            return null
+
+
 
         }
     }

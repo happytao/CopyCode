@@ -23,8 +23,8 @@ public class ShopSubscribe {
         RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
     }
 
-    public static void getParentOrderDetails(Long id, DisposableObserver<ResponseBody> subscriber) {
-        Map<String,Long> map = new HashMap<>();
+    public static void getParentOrderDetails(String id, DisposableObserver<ResponseBody> subscriber) {
+        Map<String,String> map = new HashMap<>();
         map.put("parentOrderId",id);
         Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().getParentOrderId(map);
         RetrofitFactory.getInstance().toSubscribe(observable,subscriber);

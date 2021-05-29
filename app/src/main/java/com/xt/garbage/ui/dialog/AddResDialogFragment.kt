@@ -31,6 +31,7 @@ import kotlinx.android.synthetic.main.item_address_dialog_foot.*
 class AddResDialogFragment : DialogFragment(), View.OnClickListener {
     companion object {
         const val TAG:String = "AddResDialogFragment"
+        @JvmStatic
         val instance:AddResDialogFragment by lazy {
             AddResDialogFragment()
         }
@@ -103,7 +104,7 @@ class AddResDialogFragment : DialogFragment(), View.OnClickListener {
         addressDialogAdapter?.addChildClickViewIds(R.id.up)
         addressDialogAdapter?.setOnItemChildClickListener { adapter, view, position ->
             if(view.id == R.id.up) {
-                AddressActivity.newInstance()
+                AddressActivity.newInstance(activity,mList[position],2)
 
             }
         }
@@ -150,6 +151,14 @@ class AddResDialogFragment : DialogFragment(), View.OnClickListener {
 
 
     override fun onClick(v: View?) {
-        TODO("Not yet implemented")
+        when(v?.id) {
+            R.id.btn_send -> {
+                AddressActivity.newInstance(activity,null,1)
+                dismiss()
+            }
+            R.id.close -> {
+                dismiss()
+            }
+        }
     }
 }

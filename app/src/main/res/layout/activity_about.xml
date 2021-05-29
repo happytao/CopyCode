@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.setting.AboutActivity"
+    android:orientation="vertical"
+    android:background="@color/color_F4F4F4">
+
+    <com.xt.garbage.wigdt.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:leftBackground="@drawable/left_icon"
+        app:titleTextColor="@color/color_000000"
+        app:title="关于我们"
+        android:id="@+id/toolbar"
+        android:background="@color/white"/>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:id="@+id/logo"
+        android:layout_below="@id/toolbar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/color_CC000000"
+        android:text="首心驿站"
+        android:layout_below="@id/logo"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:layout_marginTop="25dp"
+        android:id="@+id/app_name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/version"
+        android:textColor="@color/color_CC000000"
+        android:textSize="16sp"
+        android:text="v1.0.0"
+        android:layout_below="@id/app_name"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:layout_marginTop="48dp"
+        android:layout_below="@id/version"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="检测更新"
+            android:textSize="14sp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/color_CC000000"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/right_user_icon"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="36dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Copyright ©️ 2020-2021"
+            android:textSize="12sp"
+            android:textColor="@color/color_66000000"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="北方辰达（宁夏）环保科技有限公司 版权所有"
+            android:textSize="12sp"
+            android:textColor="@color/color_66000000"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+</RelativeLayout>

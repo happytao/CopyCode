@@ -8,6 +8,8 @@ import java.util.Map;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.observers.DisposableObserver;
 import okhttp3.ResponseBody;
+import okhttp3.internal.http.RetryAndFollowUpInterceptor;
+import retrofit2.Retrofit;
 
 /**
  * @author:DIY
@@ -28,6 +30,22 @@ public class LoginSubscribe {
         Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().login(map);
         RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
 
+    }
+
+    public static void sendSms(String mobile,String smsType,DisposableObserver<ResponseBody> subscribe) {
+        Map<String,String> map = new HashMap<>();
+        map.put("smsType",smsType);
+        map.put("mobile",mobile);
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().sendSms(map);
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
+    }
+
+    public static void upPassword(String password,String smsCode,DisposableObserver<ResponseBody> subscribe) {
+        Map<String,String> map = new HashMap<>();
+        map.put("smsCode",smsCode);
+        map.put("password",password);
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().upPassword(map);
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
     }
     
 }

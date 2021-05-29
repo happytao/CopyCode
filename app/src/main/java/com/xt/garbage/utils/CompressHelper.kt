@@ -37,6 +37,7 @@ class CompressHelper() {
     private var quality:Int = 80
     //存储路径
     private var destinationDirectoryPath:String? = null
+
     //文件名前缀
     private var fileNamePrefix:String? = null
     //文件名
@@ -46,17 +47,13 @@ class CompressHelper() {
         this.context = context
     }
 
-    init {
-        context?.cacheDir?.let { destinationDirectoryPath = it.path + File.pathSeparator + FileUtil.FILES_PATH }
-    }
+
 
 
     fun compressToFile(file:File):File? {
-        if(context != null && destinationDirectoryPath != null && fileNamePrefix != null && fileName != null){
-            return  BitmapUtil.compressImage(context!!, Uri.fromFile(file),maxWidth,maxHeight,
-                    compressFormat,bitmapConfig,quality, destinationDirectoryPath!!, fileNamePrefix!!, fileName!!)
-        }
-        return null
+        context?.cacheDir?.let { destinationDirectoryPath = it.path + File.pathSeparator + FileUtil.FILES_PATH }
+        return  BitmapUtil.compressImage(context!!, Uri.fromFile(file),maxWidth,maxHeight,
+                    compressFormat,bitmapConfig,quality, destinationDirectoryPath, fileNamePrefix, fileName)
     }
 
 
