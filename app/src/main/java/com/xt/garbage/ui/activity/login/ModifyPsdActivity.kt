@@ -35,7 +35,7 @@ class ModifyPsdActivity : BaseActivity() {
             }
         })
         btn_code.setOnClickListener {
-            var mCountDownTimeUtils:CountDownTimerUtils = CountDownTimerUtils(btn_send,60000,1000)
+            var mCountDownTimeUtils:CountDownTimerUtils = CountDownTimerUtils(btn_code,60000,1000)
             mCountDownTimeUtils.start()
             sendSms()
         }

@@ -55,4 +55,14 @@ public class GarbageSubscribe {
         RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
     }
 
+    public static void getIndex(DisposableObserver<ResponseBody> subscribe) {
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().getIndex();
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
+    }
+
+    public static void doingOrder(DisposableObserver<ResponseBody> subscribe) {
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().doingOrder();
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
+    }
+
 }

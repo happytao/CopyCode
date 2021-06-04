@@ -43,6 +43,13 @@ public interface HttpApi {
     @GET("auth/address/list")
     Observable<ResponseBody> getAddress();
 
+    @GET("noauth/index/banner/index/news")
+    Observable<ResponseBody> getIndex();
+
+    @GET("auth/garbage/user/order/doing/detail")
+    Observable<ResponseBody> doingOrder();
+
+
     //预约上门list
     @POST("auth/garbage/site/order/site/subscribe/list")
     Observable<ResponseBody> getAppointmentList(@Body RequestBody requestBody);

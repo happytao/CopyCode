@@ -40,6 +40,12 @@ public class RoutePathConstant {
     public final static String APP_SETTING_ABOUT = "/app/setting/about";
     public final static String APP_SETTING_WEB_VIEW = "/app/setting/web_view";
     public final static String APP_SETTING_FEEDBACK = "/app/setting/feedback";
+    public final static String APP_CODE_LOGIN = "/app/code_login";
+    public final static String APP_MAIN = "/app/main";
+    public final static String APP_USER_MESSAGE = "/app/index/message";
+    public final static String APP_COMMODITY_DETAILS = "/app/shop/commodity";
+    public final static String INDEX_NEWS_INFO = "/app/index/news_info";
+    public final static String SITE_GOTO = "/app/site/site_goto";
 
 
 
@@ -60,6 +66,11 @@ public class RoutePathConstant {
     public final static String DRIVER_PHONE = "driver_phone";
     public final static String URL = "url";
     public final static String TITLE = "title";
+    public final static String LOGIN_PHONE = "login_phone";
+    public final static String COMMODITY_ID = "commodity_id";
+    public final static String LOGO = "logo";
+    public final static String CONTENT = "content";
+    public final static String TIME = "time";
 
 
     public final static String SERVICE_JSON = "/service/json";

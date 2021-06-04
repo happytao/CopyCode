@@ -14,6 +14,7 @@ import com.xt.garbage.R;
 import com.xt.garbage.base.BaseActivity;
 import com.xt.garbage.constant.RoutePathConstant;
 import com.xt.garbage.utils.EditStatusCheck;
+import com.xt.garbage.utils.PhoneUtils;
 import com.xt.garbage.utils.TextUtils;
 import com.xt.garbage.wigdt.IEditTextChangeListener;
 
@@ -93,6 +94,25 @@ public class LoginMainActivity extends BaseActivity implements View.OnClickListe
                     return;
                 }
                 ARouter.getInstance().build(RoutePathConstant.APP_PSD_LOGIN).navigation();
+                break;
+
+            case R.id.btn_send:
+                if(mPhone.getText().toString().isEmpty()) {
+                    showToast("电话号码不能为空");
+                    return;
+                }
+                if(!PhoneUtils.isPhoneNumber(mPhone.getText().toString())) {
+                    showToast("请输入正确的手机号码");
+                    return;
+                }
+                if(!isChecked) {
+                    showToast("必须同意用户协议");
+                    return;
+                }
+                String phone = mPhone.getText().toString();
+                ARouter.getInstance().build(RoutePathConstant.APP_CODE_LOGIN)
+                        .withString(RoutePathConstant.LOGIN_PHONE,phone)
+                        .navigation();
                 break;
             default:
                 break;

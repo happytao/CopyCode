@@ -36,12 +36,14 @@ public class TextUtils {
 
     public static class Builder {
         private SpannableStringBuilder stringBuilder;
+        public static int LENGTH = 0;
 
         public Builder() {
             stringBuilder = new SpannableStringBuilder();
         }
         public Builder append(CharSequence text) {
             stringBuilder.append(text);
+            LENGTH = stringBuilder.length();
             return this;
         }
         public Builder append(CharSequence text,int color) {
@@ -49,6 +51,7 @@ public class TextUtils {
             stringBuilder.append(text);
             int end = stringBuilder.length();
             stringBuilder.setSpan(new ForegroundColorSpan(color),start,end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            LENGTH = stringBuilder.length();
             return this;
         }
 
@@ -62,6 +65,7 @@ public class TextUtils {
                     stringBuilder.setSpan(new ForegroundColorSpan(color),start,end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             }
+            LENGTH = stringBuilder.length();
             return this;
         }
 
@@ -139,6 +143,7 @@ public class TextUtils {
         public Builder setSize(CharSequence text, int size, int start, int end) {
             stringBuilder.append(text);
             stringBuilder.setSpan(new AbsoluteSizeSpan(size,true),start,end,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            LENGTH = stringBuilder.length();
             return this;
         }
 
