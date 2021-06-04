@@ -16,6 +16,7 @@ import com.xt.garbage.base.BaseConstant;
 import com.xt.garbage.base.BaseFragment;
 import com.xt.garbage.bean.constant.SpConstant;
 import com.xt.garbage.constant.RoutePathConstant;
+import com.xt.garbage.ui.fragment.main.HomeFragment;
 import com.xt.garbage.ui.fragment.workmain.MessageFragment;
 import com.xt.garbage.ui.fragment.workmain.WorkHomeFragment;
 import com.xt.garbage.ui.fragment.workmain.WorkUserFragment;

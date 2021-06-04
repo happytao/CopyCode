@@ -16,7 +16,7 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation
  */
 class NewsAdapter(data: MutableList<IndexBean.ResultDTO.NewsListDTO>?) : BaseQuickAdapter<IndexBean.ResultDTO.NewsListDTO, BaseViewHolder>(layoutResId = R.layout.item_news, data),DraggableModule {
     override fun convert(holder: BaseViewHolder, item: IndexBean.ResultDTO.NewsListDTO) {
-        holder.setText(R.id.tittle,item.newsTitle)
+        holder.setText(R.id.title,item.newsTitle)
                 .setText(R.id.content,Html.fromHtml(item.newsContent))
         ImageLoaderUtil.loadCustRoundCircleImage(context,BaseConstant.URLPREFIX + item.newsResourceUrl,holder.getView(R.id.logo),RoundedCornersTransformation.CornerType.ALL,8)
     }

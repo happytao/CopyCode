@@ -52,8 +52,19 @@ public class SplashActivity extends BaseActivity {
             case 4:
                 goWorkMain();
                 break;
+
+            case 1:
+            case 2:
+            case 3:
+                goMain();
+                break;
             default:
                 break;
         }
+    }
+
+    private void goMain() {
+        ARouter.getInstance().build(RoutePathConstant.APP_MAIN).navigation();
+        ActivityCollector.finishAll();
     }
 }

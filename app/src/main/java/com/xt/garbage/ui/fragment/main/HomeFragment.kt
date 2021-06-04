@@ -81,7 +81,7 @@ class HomeFragment : BaseFragment(),View.OnClickListener {
                     }
                     indexBean?.result?.newsList?.let {
                         mNewList.addAll(indexBean.result.newsList)
-                        indexShopAdapter?.notifyDataSetChanged()
+                        newsAdapter?.notifyDataSetChanged()
                     }
                 }
             }
