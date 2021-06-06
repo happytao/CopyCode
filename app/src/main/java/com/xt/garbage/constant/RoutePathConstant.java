@@ -46,6 +46,9 @@ public class RoutePathConstant {
     public final static String APP_COMMODITY_DETAILS = "/app/shop/commodity";
     public final static String INDEX_NEWS_INFO = "/app/index/news_info";
     public final static String SITE_GOTO = "/app/site/site_goto";
+    public final static String GARBAGE_TYPE = "/app/site/garbage_type";
+    public final static String SITE_CODE = "/app/site_delivery_code";
+    public final static String INDEX_NEWS_LIST = "/app/index/news_list";
 
 
 

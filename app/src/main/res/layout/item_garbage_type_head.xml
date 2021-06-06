@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_radius"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+
+    <ImageView
+        android:layout_width="29dp"
+        android:layout_height="24dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/garbage_dec_icon"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dec"
+        android:text="        可回收垃圾一般指可回收物。可回收物指适宜回收利用和资源化利用的生活废弃物。可回收物主要品种包括：废纸、废塑料、废金属、废包装物、废旧纺织物、废弃电器电子产品、废玻璃、废纸塑铝复合包装等。   "
+        android:textSize="14sp"
+        android:textColor="@color/color_CC000000"
+        android:layout_marginTop="7dp"/>
+</RelativeLayout>

@@ -65,4 +65,8 @@ public class GarbageSubscribe {
         RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
     }
 
+    public static void getManyList(DisposableObserver<ResponseBody> subscribe) {
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().getManyList();
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
+    }
 }

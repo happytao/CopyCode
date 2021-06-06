@@ -142,8 +142,8 @@ public class TextUtils {
 
         public Builder setSize(CharSequence text, int size, int start, int end) {
             stringBuilder.append(text);
-            stringBuilder.setSpan(new AbsoluteSizeSpan(size,true),start,end,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             LENGTH = stringBuilder.length();
+            stringBuilder.setSpan(new AbsoluteSizeSpan(size,true),start,end,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             return this;
         }
 

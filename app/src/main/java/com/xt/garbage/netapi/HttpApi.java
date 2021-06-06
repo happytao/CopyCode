@@ -49,6 +49,9 @@ public interface HttpApi {
     @GET("auth/garbage/user/order/doing/detail")
     Observable<ResponseBody> doingOrder();
 
+    @GET("noauth/garbage/category/many/list")
+    Observable<ResponseBody> getManyList();
+
 
     //预约上门list
     @POST("auth/garbage/site/order/site/subscribe/list")
@@ -108,5 +111,9 @@ public interface HttpApi {
     //用户反馈
     @POST("auth/user/feedback/opinion")
     Observable<ResponseBody> feedback(@Body Map<String,String> map);
+
+    //获取商品详情
+    @POST("auth/goods/detail")
+    Observable<ResponseBody> getCommodityDetails(@Body Map<String,Long> map);
 
 }

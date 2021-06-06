@@ -111,7 +111,7 @@ class HomeFragment : BaseFragment(),View.OnClickListener {
         }
         newsAdapter = NewsAdapter(mNewList)
         newRecycler_view.adapter = newsAdapter
-        newsAdapter?.setOnItemClickListener { adapter, view, position ->
+        newsAdapter?.setOnItemClickListener { _, _, position ->
             ARouter.getInstance().build(RoutePathConstant.INDEX_NEWS_INFO)
                     .withString(RoutePathConstant.TITLE,mNewList[position].newsTitle)
                     .withString(RoutePathConstant.LOGO,mNewList[position].newsResourceUrl)
@@ -132,6 +132,16 @@ class HomeFragment : BaseFragment(),View.OnClickListener {
                 }
                 getDoingOrder()
             }
+            R.id.make_item1 -> {
+                ARouter.getInstance().build(RoutePathConstant.GARBAGE_TYPE).navigation()
+            }
+            R.id.make_item3 -> {
+                ARouter.getInstance().build(RoutePathConstant.SITE_CODE).navigation()
+            }
+            R.id.more -> {
+                ARouter.getInstance().build(RoutePathConstant.INDEX_NEWS_LIST).navigation()
+            }
+            else -> {}
         }
     }
 

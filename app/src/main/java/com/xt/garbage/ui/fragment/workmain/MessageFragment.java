@@ -151,8 +151,13 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     private void checkUserType(int userType) {
         switch (userType) {
             case 4:
+            case 5:
                 mToolbar.setVisibility(View.VISIBLE);
                 break;
+            case 1:
+            case 2:
+            case 3:
+                mToolbar.setVisibility(View.GONE);
             default:
                 break;
         }
