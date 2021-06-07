@@ -17,6 +17,7 @@ import com.xt.garbage.constant.RoutePathConstant
 import com.xt.garbage.netSubscribe.shop.ShopSubscribe
 import com.xt.garbage.netapi.OnSuccessAndFaultListener
 import com.xt.garbage.netapi.OnSuccessAndFaultSub
+import com.xt.garbage.ui.dialog.CommodityDetailsDialogFragment
 import com.xt.garbage.utils.GsonUtils
 import com.xt.garbage.utils.TextUtils
 import com.xt.garbage.wigdt.Toolbar
@@ -117,11 +118,17 @@ class CommodityDetailsActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-//        when(v?.id) {
-//            R.id.add_car -> {
-//                var commodityDetailsDialogFragment:Commodi
-//            }
-//        }
+        when(v?.id) {
+            R.id.add_car -> {
+                var commodityDetailsDialogFragment:CommodityDetailsDialogFragment = CommodityDetailsDialogFragment.newInstance(commodityBean!!,true)
+                commodityDetailsDialogFragment.show(supportFragmentManager,CommodityDetailsDialogFragment.TAG)
+            }
+            R.id.exchange -> {
+                var commodityDetailsDialogFragment:CommodityDetailsDialogFragment = CommodityDetailsDialogFragment.newInstance(commodityBean!!,false)
+                commodityDetailsDialogFragment.show(supportFragmentManager,CommodityDetailsDialogFragment.TAG)
+            }
+            else -> {}
+        }
     }
 
     override fun onDestroy() {

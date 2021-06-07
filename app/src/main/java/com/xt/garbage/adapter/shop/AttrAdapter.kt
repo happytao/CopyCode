@@ -1,7 +1,6 @@
 package com.xt.garbage.adapter.shop
 
 import android.annotation.SuppressLint
-import android.content.res.Resources
 import android.view.View
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -46,12 +45,15 @@ class AttrAdapter(data: MutableList<CommodityDetailsBean.Result.Spec>?) : BaseQu
 
     }
 
-    interface FlowItemClick {
+     public interface FlowItemClick {
         fun onItemClick(view: View, position:Int,holder:BaseViewHolder)
     }
 
-    fun setOnFlowItemClick(flowItemClick:FlowItemClick) {
+    fun setOnFlowItemClick(flowItemClick: FlowItemClick) {
         this.flowItemClick = flowItemClick
     }
+
+
+
 
 }

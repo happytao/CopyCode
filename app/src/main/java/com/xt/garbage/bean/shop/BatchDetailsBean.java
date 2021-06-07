@@ -1,12 +1,13 @@
 package com.xt.garbage.bean.shop;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author:DIY
  * @date: 2021/4/3
  */
-public class BatchDetailsBean {
+public class BatchDetailsBean implements Serializable {
 
     /**
      * errorCode : (int32)
@@ -52,7 +53,7 @@ public class BatchDetailsBean {
         this.success = success;
     }
 
-    public static class ResultDTO {
+    public static class ResultDTO implements Serializable {
         /**
          * addressResp : {"area":"(string)区","city":"(string)市","detailAddress":"(string)详细地址","id":"(int64)收货地址ID","isUse":"(boolean)是否常用地址","mobile":"(string)手机号","name":"(string)姓名","province":"(string)省","remark":"(string)备注","telephone":"(string)座机"}
          * childOrderRespList : [{"buyNum":"(int32)购买数量","consumeCash":"(number)消费现金","consumeScore":"(int32)消费积分","goodsSellType":"(int32)商品售卖类型：{1.积分 2.现金 3.积分+现金}","isEvaluate":"(boolean)是否评价","orderSpecList":[{"refAttrName":"(string)属性名称","refSpecAttrId":"(int32)规格属性ID","refSpecId":"(int32)规格ID","refSpecName":"(string)规格名称"}],"refGoodsCashPrice":"(number)商品现金单价","refGoodsId":"(int64)商品ID","refGoodsName":"(string)商品名称","refGoodsResourceUrl":"(string)商品主图资源URL","refGoodsScorePrice":"(int32)商品积分单价"}]
@@ -277,7 +278,7 @@ public class BatchDetailsBean {
             this.totalConsumeScore = totalConsumeScore;
         }
 
-        public static class AddressRespDTO {
+        public static class AddressRespDTO implements Serializable{
             /**
              * area : (string)区
              * city : (string)市
@@ -383,7 +384,7 @@ public class BatchDetailsBean {
             }
         }
 
-        public static class PickRespDTO {
+        public static class PickRespDTO implements Serializable{
             /**
              * pickLinkAddress : (string)取货链接地址（生成二维码）
              * pickNo : (string)取货号
@@ -420,7 +421,7 @@ public class BatchDetailsBean {
         }
 
 
-        public static class SiteRespDTO {
+        public static class SiteRespDTO implements Serializable {
             /**
              * id : (int64)站点ID
              * siteContactMobile : (string)驿站联系人电话
@@ -497,7 +498,7 @@ public class BatchDetailsBean {
         }
 
 
-        public static class SystemFreightChargeDTO {
+        public static class SystemFreightChargeDTO implements Serializable{
             /**
              * freightChargeValCash : (number)运费结算值/现金
              * freightChargeValScore : (int32)运费结算值/积分
@@ -524,7 +525,7 @@ public class BatchDetailsBean {
         }
 
 
-        public static class ChildOrderRespListDTO {
+        public static class ChildOrderRespListDTO implements Serializable{
             /**
              * buyNum : (int32)购买数量
              * consumeCash : (number)消费现金
@@ -639,7 +640,7 @@ public class BatchDetailsBean {
                 this.refGoodsScorePrice = refGoodsScorePrice;
             }
 
-            public static class OrderSpecListDTO {
+            public static class OrderSpecListDTO implements Serializable{
                 /**
                  * refAttrName : (string)属性名称
                  * refSpecAttrId : (int32)规格属性ID

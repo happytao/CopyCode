@@ -116,4 +116,12 @@ public interface HttpApi {
     @POST("auth/goods/detail")
     Observable<ResponseBody> getCommodityDetails(@Body Map<String,Long> map);
 
+    //添加到购物车
+    @POST("auth/shopping/car/add")
+    Observable<ResponseBody> addCar(@Body RequestBody body);
+
+    //商品创建订单
+    @POST("auth/shop/order/goods/create")
+    Observable<ResponseBody> createOrder(@Body RequestBody body);
+
 }

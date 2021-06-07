@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.shop.CommodityDetailsActivity"></activity>
+        <activity android:name=".ui.activity.shop.ConfirmOrderDetailsActivity"></activity>
+        <activity android:name=".ui.activity.shop.CommodityDetailsActivity" />
         <activity android:name=".ui.activity.site.SiteDeliveryCodeActivity" />
         <activity android:name=".ui.activity.site.GarbageTypeActivity" />
         <activity android:name=".ui.activity.message.MessageActivity" />

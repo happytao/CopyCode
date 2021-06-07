@@ -1,11 +1,13 @@
 package com.xt.garbage.adapter.garbage;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.xt.garbage.R;
 import com.xt.garbage.bean.workmain.OrderSiteDetailsBean;
+import com.xt.garbage.netapi.OnSuccessAndFaultListener;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -45,4 +47,5 @@ public class OrderSubscribeSuccessAdapter extends BaseQuickAdapter<OrderSiteDeta
         this.settly = settly;
         notifyDataSetChanged();
     }
+
 }

@@ -2,16 +2,15 @@ package com.xt.garbage.bean.shop
 
 import android.annotation.SuppressLint
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
 data class CommodityDetailsBean(
     var errorCode: Int,
     var errorMsg: String,
     var result: Result,
     var success: Boolean
-) {
-    @SuppressLint("ParcelCreator")
-    @Parcelize
+): Serializable {
+
     data class Result(
         var categoryNameOne: String,
         var categoryNameTwo: String,
@@ -32,31 +31,36 @@ data class CommodityDetailsBean(
         var refCategoryIdTwo: Int,
         var resourceList: List<Resource>,
         var specList: List<Spec>
-    ) : Parcelable {
+    ):Serializable {
+
         data class GoodsDetail(
             var detailKey: String,
             var detailValue: String
-        )
+        ):Serializable
+
 
         data class Resource(
             var resourceName: String,
             var resourceRemark: String,
             var resourceUrl: String
-        )
+        ):Serializable
 
         data class Spec(
             var attrList: List<Attr>,
             var id: Int,
             var specName: String,
             var specOrder: Int
-        ) {
+        ):Serializable {
+
             data class Attr(
                 var attrName: String,
                 var attrOrder: Int,
                 var goodsStore: Int,
                 var id: Int,
-                var isTrue: Boolean = false
-            )
+                var isTrue: Boolean = false,
+                var goodsScorePrice : Long,
+                var goodsCashPrice : Double
+            ):Serializable
         }
     }
 }
