@@ -75,7 +75,7 @@ public class GetAddressResultBean {
         private String area;
         private String city;
         private String detailAddress;
-        private int id;
+        private String id;
         private boolean isUse;
         private String mobile;
         private String name;
@@ -87,7 +87,7 @@ public class GetAddressResultBean {
             area = in.readString();
             city = in.readString();
             detailAddress = in.readString();
-            id = in.readInt();
+            id = in.readString();
             isUse = in.readByte() != 0;
             mobile = in.readString();
             name = in.readString();
@@ -119,7 +119,7 @@ public class GetAddressResultBean {
             dest.writeString(area);
             dest.writeString(city);
             dest.writeString(detailAddress);
-            dest.writeInt(id);
+            dest.writeString(id);
             dest.writeBoolean(isUse);
             dest.writeString(mobile);
             dest.writeString(name);
@@ -153,11 +153,11 @@ public class GetAddressResultBean {
             this.detailAddress = detailAddress;
         }
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 

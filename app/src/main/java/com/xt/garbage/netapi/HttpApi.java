@@ -124,4 +124,16 @@ public interface HttpApi {
     @POST("auth/shop/order/goods/create")
     Observable<ResponseBody> createOrder(@Body RequestBody body);
 
+    //商品确认订单
+    @POST("auth/shop/order/confirm/order")
+    Observable<ResponseBody> confirmOrder(@Body RequestBody body);
+
+    //商城新增收获地址
+    @POST("auth/address/add")
+    Observable<ResponseBody> addAddress(@Body RequestBody body);
+
+    //商城更新收获地址
+    @POST("auth/address/update")
+    Observable<ResponseBody> updateAddress(@Body RequestBody body);
+
 }

@@ -2,6 +2,8 @@ package com.xt.garbage.netSubscribe.shop;
 
 import com.google.gson.Gson;
 import com.xt.garbage.bean.shop.AddCarBean;
+import com.xt.garbage.bean.shop.BatchDetailsBean;
+import com.xt.garbage.bean.shop.BatchOrderPostBean;
 import com.xt.garbage.netutils.RetrofitFactory;
 import com.xt.garbage.utils.GsonUtils;
 
@@ -51,9 +53,7 @@ public class ShopSubscribe {
     }
 
     public static void addCar(int buyNum, AddCarBean.Spec spec, long refGoodsId, DisposableObserver<ResponseBody> subscribe) {
-        List<AddCarBean.Spec> specList = new ArrayList();
-        specList.add(spec);
-        AddCarBean addCarBean = new AddCarBean(buyNum, refGoodsId, specList);
+        AddCarBean addCarBean = new AddCarBean(String.valueOf(buyNum), String.valueOf(refGoodsId), spec);
         String carBean = GsonUtils.toJson(addCarBean);
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), carBean);
         Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().addCar(body);
@@ -61,13 +61,56 @@ public class ShopSubscribe {
     }
 
     public static void createOrder(int buyNum, AddCarBean.Spec spec, long refGoodsId, DisposableObserver<ResponseBody> subscribe) {
-        List<AddCarBean.Spec> specList = new ArrayList<>();
-        specList.add(spec);
-        AddCarBean addCarBean = new AddCarBean(buyNum, refGoodsId, specList);
+
+        AddCarBean addCarBean = new AddCarBean(String.valueOf(buyNum), String.valueOf(refGoodsId), spec);
         String carBean = GsonUtils.toJson(addCarBean);
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), carBean);
         Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().createOrder(body);
         RetrofitFactory.getInstance().toSubscribe(observable, subscribe);
+    }
+
+    public static void confirmOrder(String addressId,String orderRemark,boolean distributionWay,String id,boolean freightChargeWay,DisposableObserver<ResponseBody> subscribe) {
+        BatchOrderPostBean batchOrderPostBean = new BatchOrderPostBean(
+                addressId,
+                distributionWay,
+                freightChargeWay,
+                orderRemark,
+                id
+        );
+        String carBean = GsonUtils.toJson(batchOrderPostBean);
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),carBean);
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().confirmOrder(body);
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
+    }
+
+    public static void addAddress(String province,String city, boolean isUse, String area, String detailAddress, String mobile, String name, DisposableObserver<ResponseBody> subscribe) {
+        BatchDetailsBean.ResultDTO.AddressRespDTO addressBean = new BatchDetailsBean.ResultDTO.AddressRespDTO();
+        addressBean.setArea(area);
+        addressBean.setCity(city);
+        addressBean.setDetailAddress(detailAddress);
+        addressBean.setProvince(province);
+        addressBean.setUse(isUse);
+        addressBean.setName(name);
+        addressBean.setMobile(mobile);
+        String carBean = GsonUtils.toJson(addressBean);
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),carBean);
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().addAddress(body);
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
+    }
+
+    public static void updateAddress(String province,String city, boolean isUse, String area, String detailAddress, String mobile, String name, DisposableObserver<ResponseBody> subscribe) {
+        BatchDetailsBean.ResultDTO.AddressRespDTO addressBean = new BatchDetailsBean.ResultDTO.AddressRespDTO();
+        addressBean.setArea(area);
+        addressBean.setCity(city);
+        addressBean.setDetailAddress(detailAddress);
+        addressBean.setProvince(province);
+        addressBean.setUse(isUse);
+        addressBean.setName(name);
+        addressBean.setMobile(mobile);
+        String carBean = GsonUtils.toJson(addressBean);
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),carBean);
+        Observable<ResponseBody> observable = RetrofitFactory.getInstance().getHttpApi().updateAddress(body);
+        RetrofitFactory.getInstance().toSubscribe(observable,subscribe);
     }
 }
 

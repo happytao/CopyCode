@@ -3,7 +3,15 @@ package com.xt.garbage.ui.dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.view.View.inflate
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import androidx.core.content.res.ColorStateListInflaterCompat.inflate
+import androidx.core.content.res.ComplexColorCompat.inflate
+import androidx.core.graphics.drawable.DrawableCompat.inflate
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +31,7 @@ import com.xt.garbage.workmain.EventMessage
 import com.yanzhenjie.recyclerview.SwipeMenuItem
 import kotlinx.android.synthetic.main.dialog_address.*
 import kotlinx.android.synthetic.main.item_address_dialog_foot.*
+import java.util.zip.Inflater
 
 /**
  *@author:DIY
@@ -39,6 +48,8 @@ class AddResDialogFragment : DialogFragment(), View.OnClickListener {
     private var mList:MutableList<GetAddressResultBean.ResultDTO> = ArrayList()
     private var addressDialogAdapter:AddressDialogAdapter? = null
     private var footView:View? = null
+    private var btnSend:RelativeLayout? = null
+    private var imgClose:ImageView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -51,25 +62,30 @@ class AddResDialogFragment : DialogFragment(), View.OnClickListener {
         lp?.windowAnimations = R.style.BottomDialogAnimation
         window?.attributes = lp
         window?.setBackgroundDrawable(ColorDrawable())
-
         val view:View = inflater.inflate(R.layout.dialog_address,null)
-        initView(view)
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView(view)
+    }
+
     private fun initView(view: View) {
-        footView = View.inflate(activity,R.layout.item_address_dialog_foot,null)
+        footView = layoutInflater.inflate(R.layout.item_address_dialog_foot,null)
+        addressDialogAdapter = AddressDialogAdapter(mList)
+        footView?.let { addressDialogAdapter?.addFooterView(it) }
         var manager:LinearLayoutManager = LinearLayoutManager(context)
         manager.orientation = LinearLayoutManager.VERTICAL
         recyclerview.layoutManager = manager
-        btn_send.setOnClickListener(this)
+        btnSend = footView!!.findViewById(R.id.btn_send)
+        btnSend?.setOnClickListener(this)
         close.setOnClickListener(this)
         initData()
 
     }
 
     private fun initData() {
-        addressDialogAdapter = AddressDialogAdapter(mList)
         recyclerview.setSwipeMenuCreator{ _,rightMenu,_ ->
             var deleteItem:SwipeMenuItem = SwipeMenuItem(context)
             deleteItem.setBackgroundColor(Color.parseColor("#FF3D39"))
@@ -84,7 +100,7 @@ class AddResDialogFragment : DialogFragment(), View.OnClickListener {
 
         recyclerview.setOnItemMenuClickListener{ menuBridge,adapterPosition ->
             menuBridge.closeMenu()
-            deleteAddress(mList[adapterPosition].id)
+            deleteAddress(mList[adapterPosition].id.toInt())
             mList.removeAt(adapterPosition)
             addressDialogAdapter?.notifyDataSetChanged()
 
@@ -92,10 +108,8 @@ class AddResDialogFragment : DialogFragment(), View.OnClickListener {
 
 
         }
-        footView?.let { addressDialogAdapter?.addFooterView(it) }
         recyclerview.addItemDecoration(DividerItemDecoration(activity,DividerItemDecoration.VERTICAL))
         recyclerview.adapter = addressDialogAdapter
-        getAddress()
         addressDialogAdapter?.setOnItemClickListener { _, _, position ->
             EventBusUtils.post(EventMessage(EventCode.CONFIRM_ADDRESS,mList[position]))
             dismiss()
@@ -153,12 +167,26 @@ class AddResDialogFragment : DialogFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btn_send -> {
-                AddressActivity.newInstance(activity,null,1)
-                dismiss()
+                try {
+                    AddressActivity.newInstance(activity,null,1)
+                    dismiss()
+                } catch (e: Exception) {
+                    Log.e("TAG",Log.getStackTraceString(e))
+                }
             }
             R.id.close -> {
                 dismiss()
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mList.clear()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getAddress()
     }
 }

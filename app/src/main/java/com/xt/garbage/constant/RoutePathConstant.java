@@ -49,6 +49,7 @@ public class RoutePathConstant {
     public final static String GARBAGE_TYPE = "/app/site/garbage_type";
     public final static String SITE_CODE = "/app/site_delivery_code";
     public final static String INDEX_NEWS_LIST = "/app/index/news_list";
+    public final static String APP_ORDER_DETAILS = "/app/shop/confirm_order_details";
 
 
 
@@ -74,6 +75,7 @@ public class RoutePathConstant {
     public final static String LOGO = "logo";
     public final static String CONTENT = "content";
     public final static String TIME = "time";
+    public final static String ADDRESS_CODE = "address_code";
 
 
     public final static String SERVICE_JSON = "/service/json";

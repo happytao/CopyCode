@@ -221,19 +221,20 @@ class CommodityDetailsDialogFragment : DialogFragment(), View.OnClickListener {
                     for (index_2 in commodityBean?.specList!![index].attrList.indices) {
                         if(commodityBean?.specList!![index].attrList[index_2].isTrue) {
                             spec = AddCarBean.Spec(
-                                    refSpecId = commodityBean?.specList!![index].id,
+                                    refSpecId = commodityBean?.specList!![index].id.toString(),
                                     refSpecName = commodityBean?.specList!![index].specName,
                                     refAttrName = commodityBean?.specList!![index].attrList[index_2].attrName,
-                                    refSpecAttrId = commodityBean?.specList!![index].attrList[index_2].id
+                                    refSpecAttrId = commodityBean?.specList!![index].attrList[index_2].id.toString()
                             )
                         }
                     }
-                    if(isCar) {
-                        addCar(mGoodNum,spec,commodityBean?.id)
-                    }
-                    else {
-                        createOrder(mGoodNum,spec,commodityBean?.id)
-                    }
+                }
+
+                if(isCar) {
+                    addCar(mGoodNum,spec,commodityBean?.id)
+                }
+                else {
+                    createOrder(mGoodNum,spec,commodityBean?.id)
                 }
             }
         }
@@ -252,7 +253,7 @@ class CommodityDetailsDialogFragment : DialogFragment(), View.OnClickListener {
             }
 
             override fun onFailed(errorMsg: String?) {
-                TODO("Not yet implemented")
+                Toast.makeText(context,"请求失败：$errorMsg",Toast.LENGTH_SHORT).show()
             }
         }))
 
@@ -264,14 +265,18 @@ class CommodityDetailsDialogFragment : DialogFragment(), View.OnClickListener {
                 result?.let {
                     var batchDetailsBean:BatchDetailsBean = GsonUtils.fromJson(result,BatchDetailsBean::class.java)
                     if(batchDetailsBean != null) {
-                        ConfirmOrderDetailsActivity.newInstance(activity!!,batchDetailsBean)
+                        try {
+                            ConfirmOrderDetailsActivity.newInstance(activity!!,batchDetailsBean)
+                        } catch (e: Exception) {
+                            Log.e("TAG",Log.getStackTraceString(e))
+                        }
 
                     }
                 }
             }
 
             override fun onFailed(errorMsg: String?) {
-                TODO("Not yet implemented")
+                Toast.makeText(context,"请求失败：$errorMsg",Toast.LENGTH_SHORT).show()
             }
         }))
 
